@@ -1,0 +1,41 @@
+{
+  "name": "jb-switch",
+  "description": "switch web component",
+  "type": "module",
+  "author": {
+    "name": "mohammad javad bathaei",
+    "email": "javadbat@gmail.com"
+  },
+  "keywords": [
+    "jb",
+    "jb-switch",
+    "true false",
+    "switch",
+    "web component"
+  ],
+  "version": "1.0.0",
+  "bugs": "https://github.com/javadbat/jb-switch/issues",
+  "license": "MIT",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib/",
+    "lib/types.ts",
+    "dist/"
+  ],
+  "exports": {
+    ".": {
+      "import": "./index.js"
+    }
+  },
+  "main": "index.js",
+  "module": "index.js",
+  "homepage": "https://github.com/javadbat/jb-switch",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/javadbat/jb-switch"
+  },
+  "types": "./dist/jb-switch.d.ts",
+  "dependencies": {
+  }
+}
