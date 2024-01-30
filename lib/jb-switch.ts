@@ -5,10 +5,16 @@ import { ElementsObject } from './types';
 export class JBSwitchWebComponent extends HTMLElement {
     static get formAssociated() { return true; }
     #value = false;
+    //when we call on before change we save new value here so when user use event.target.value he will see new value but after the event bubble done we null it.
+    //it mostly defined here for react eco-system
+    #ChangeEventPreservedValue:boolean | null = null;
     elements!: ElementsObject;
     #disabled = false;
     internals_?: ElementInternals;
     get value(): boolean {
+        if(this.#ChangeEventPreservedValue !== null){
+            return this.#ChangeEventPreservedValue;
+        }
         return this.#value;
     }
     set value(value: boolean) {
@@ -118,10 +124,21 @@ export class JBSwitchWebComponent extends HTMLElement {
         if (this.#disabled) {
             return;
         }
-        this.value = !this.value;
-        this.dispatchOnChangeEvent();
+        this.#ChangeEventPreservedValue = !this.#value;
+        const isEventPrevented = this.#dispatchOnBeforeChangeEvent();
+        this.#ChangeEventPreservedValue = null;
+        if(!isEventPrevented){
+            this.value = !this.#value;
+            this.#dispatchOnChangeEvent();
+        }
     }
-    dispatchOnChangeEvent(): void {
+    #dispatchOnBeforeChangeEvent(): boolean {
+        const event = new CustomEvent('before-change',{cancelable:true});
+        this.dispatchEvent(event);
+        const prevented = event.defaultPrevented;
+        return prevented;
+    }
+    #dispatchOnChangeEvent(): void {
         const event = new CustomEvent('change');
         this.dispatchEvent(event);
     }
