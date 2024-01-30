@@ -6,12 +6,11 @@
     .caption{
         display: inline-block;
         padding: 0 0 0 8px;
-        font-weight: 400;
-        color: #535353;
+        color: inherit;
         transition: all 0.3s ease-in-out;
         &.--active{
             transition: all 0.3s ease-in-out;
-            font-weight: 700;
+            -webkit-text-stroke: 1px;
         }
     }
     .svg-wrapper{
@@ -30,14 +29,14 @@
                     }
                 }
                 .trigger-circle-bar{
-                    stroke: #00dc55;
+                    stroke:var(--jb-switch-ring-color-active, #00dc55);
                 }
                 .bg-bar{
-                    fill:#00dc55;
+                    fill:var(--jb-switch-bg-color-active, #00dc55);
                 }
             }
             .bg-bar{
-                fill:#e3e3e3;
+                fill:var(--jb-switch-bg-color, #e3e3e3);
                 transition: all 0.3s ease-in-out;
             }
             .trigger-button{
@@ -54,7 +53,7 @@
             }
             .trigger-circle-bar{
                 fill:transparent;
-                stroke: #039be5;
+                stroke:var(--jb-switch-ring-color, #039be5);
                 stroke-width: 20px;
                 transition: all 0.3s ease-in-out;
                 stroke-dasharray: 800,800;

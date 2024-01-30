@@ -1,6 +1,9 @@
 #changelog
+## [1.1.0] - 2024-01-30
+### new features:
+    - add custom css variable
 
-## [1.0.1] - 2024-01-09
+## [1.0.1] - 2024-01-30
 ### fixed
     - fix loading styles
 
