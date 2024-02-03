@@ -1,3 +1,15 @@
+:host(:focus),
+:host(:focus-visible) {
+    outline: none;
+}
+:host(:dir(rtl)){
+    //because chrome still count shadow dom as ltr (its a web-kit bug) we do this so when bug fixes switch will change direction base on :dir() selector
+    direction: rtl;
+}
+:host(:dir(ltr)){
+    //because chrome still count shadow dom as ltr (its a web-kit bug) we do this so when bug fixes switch will change direction base on :dir() selector
+    direction: ltr;
+}
 .jb-switch-web-component{
     display: flex;
     flex-direction: row;
