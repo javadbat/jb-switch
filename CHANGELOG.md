@@ -1,4 +1,8 @@
 #changelog
+## [1.1.1] - 2024-01-30
+### fixed
+    - fix md file styling section
+
 ## [1.1.0] - 2024-01-30
 ### new features:
     - add custom css variable
