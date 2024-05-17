@@ -1,5 +1,5 @@
 # jb-switch
-switch web-component
+switch web-component with an smooth animation.
 ## usage
 ```html
 <jb-switch true-title="my enable" false-title="my-disable"></jb-switch>
