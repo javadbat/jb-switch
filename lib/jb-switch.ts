@@ -160,7 +160,10 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
     this.#ChangeEventPreservedValue = null;
     if (!isEventPrevented) {
       this.value = !this.#value;
-      this.#dispatchOnChangeEvent();
+      const DispatchedEvent = this.#dispatchOnChangeEvent();
+      if(DispatchedEvent.defaultPrevented){
+        this.value = !this.#value;
+      }
     }
   }
   #dispatchOnBeforeChangeEvent(): boolean {
@@ -169,9 +172,10 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
     const prevented = event.defaultPrevented;
     return prevented;
   }
-  #dispatchOnChangeEvent(): void {
-    const event = new CustomEvent('change');
+  #dispatchOnChangeEvent() {
+    const event = new Event('change',{bubbles:true,cancelable:true,composed:true});
     this.dispatchEvent(event);
+    return event;
   }
   /**
    * @public
