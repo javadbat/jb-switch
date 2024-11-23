@@ -1,4 +1,9 @@
-#changelog
+# changelog
+
+## [1.2.0] - 2024-01-23
+### new features:
+    - add validation module
+    - add name and other form related attributes
 ## [1.1.1] - 2024-01-30
 ### fixed
     - fix md file styling section

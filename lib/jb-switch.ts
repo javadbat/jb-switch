@@ -1,167 +1,240 @@
 import HTML from './jb-switch.html';
 import CSS from './jb-switch.scss';
-import { ElementsObject } from './types';
-
-export class JBSwitchWebComponent extends HTMLElement {
+import { ValidationHelper, ValidationItem, ValidationResult, type WithValidation } from 'jb-validation';
+import { type JBFormInputStandards } from 'jb-form';
+import { ElementsObject, ValidationValue } from './types.js';
+export * from './types.js';
+export class JBSwitchWebComponent extends HTMLElement implements WithValidation, JBFormInputStandards<boolean> {
   static get formAssociated() { return true; }
-    #value = false;
-    //when we call on before change we save new value here so when user use event.target.value he will see new value but after the event bubble done we null it.
-    //it mostly defined here for react eco-system
-    #ChangeEventPreservedValue:boolean | null = null;
-    elements!: ElementsObject;
-    #disabled = false;
-    internals_?: ElementInternals;
-    get value(): boolean {
-      if(this.#ChangeEventPreservedValue !== null){
-        return this.#ChangeEventPreservedValue;
-      }
-      return this.#value;
+  #value = false;
+  //when we call on before change we save new value here so when user use event.target.value he will see new value but after the event bubble done we null it.
+  //it mostly defined here for react eco-system
+  #ChangeEventPreservedValue: boolean | null = null;
+  elements!: ElementsObject;
+  #disabled = false;
+  #internals?: ElementInternals;
+  get value(): boolean {
+    if (this.#ChangeEventPreservedValue !== null) {
+      return this.#ChangeEventPreservedValue;
     }
-    set value(value: boolean) {
-      if (this.#value !== value) {
-        this.#value = value;
-      }
-      this.#updateDomForValueChange();
-      //comment for typescript problem
-      if (this.internals_ && typeof this.internals_.setFormValue == "function") {
-        this.internals_.setFormValue(`${value}`);
-      }
+    return this.#value;
+  }
+  set value(value: boolean) {
+    if (this.#value !== value) {
+      this.#value = value;
     }
-    #isLoading = false;
-    get isLoading(){
-      return this.#isLoading;
+    this.#updateDomForValueChange();
+    //comment for typescript problem
+    if (this.#internals && typeof this.#internals.setFormValue == "function") {
+      this.#internals.setFormValue(`${value}`);
     }
-    set isLoading(value:boolean){
-      this.#isLoading = value;
-      if(value){
-        this.elements.triggerCircleBar.classList.add('--loading');
-      }else{
-        this.elements.triggerCircleBar.classList.remove('--loading');
-      }
+  }
+  #isLoading = false;
+  get isLoading() {
+    return this.#isLoading;
+  }
+  set isLoading(value: boolean) {
+    this.#isLoading = value;
+    if (value) {
+      this.elements.triggerCircleBar.classList.add('--loading');
+    } else {
+      this.elements.triggerCircleBar.classList.remove('--loading');
     }
-    constructor() {
-      super();
-      if (typeof this.attachInternals == "function") {
-        //some browser don't support attachInternals
-        this.internals_ = this.attachInternals();
-      }
-      this.initWebComponent();
+  }
+  #validation = new ValidationHelper(this.showValidationError.bind(this), this.clearValidationError.bind(this), () => (this.value), () =>(this.value ? 'true' : 'false'), () => [],this.#setValidationResult.bind(this))
+  get validation(){
+    return this.#validation;
+  }
+  get name(){
+    return this.getAttribute('name') || '';
+  }
+  initialValue = false;
+  get isDirty(): boolean{
+    return this.#value !== this.initialValue;
+  }
+  #required = false;
+  set required(value:boolean){
+    this.#required = value;
+    this.#validation.checkValidity(false);
+  }
+  get required() {
+    return this.#required;
+  }
+  isAutoValidationDisabled= false;
+  get disabled(){
+    return this.#disabled;
+  }
+  set disabled(value:boolean){
+    this.#disabled = value;
+    if(value){
+      //TODO: remove as any when typescript support
+      (this.#internals as any).states?.add("disabled");
+    }else{
+      (this.#internals as any).states?.delete("disabled");
     }
-    connectedCallback(): void {
-      // standard web component event that called when all of dom is bound
-      this.callOnLoadEvent();
-      this.initProp();
-      this.callOnInitEvent();
+  }
+  constructor() {
+    super();
+    if (typeof this.attachInternals == "function") {
+      //some browser don't support attachInternals
+      this.#internals = this.attachInternals();
+    }
+    this.initWebComponent();
+  }
+  connectedCallback(): void {
+    // standard web component event that called when all of dom is bound
+    this.callOnLoadEvent();
+    this.initProp();
+    this.callOnInitEvent();
+
+  }
+  callOnLoadEvent(): void {
+    const event = new CustomEvent('load', { bubbles: true, composed: true });
+    this.dispatchEvent(event);
+  }
+  callOnInitEvent(): void {
+    const event = new CustomEvent('init', { bubbles: true, composed: true });
+    this.dispatchEvent(event);
+  }
+  initWebComponent(): void {
+    const shadowRoot = this.attachShadow({
+      mode: 'open',
+      delegatesFocus: true,
+    });
+    const html = `<style>${CSS}</style>` + '\n' + HTML;
+    const element = document.createElement('template');
+    element.innerHTML = html;
+    shadowRoot.appendChild(element.content.cloneNode(true));
+    this.elements = {
+      componentWrapper: shadowRoot.querySelector('.jb-switch-web-component')!,
+      falseText: shadowRoot.querySelector('.false-text')!,
+      trueText: shadowRoot.querySelector('.true-text')!,
+      switch: shadowRoot.querySelector('.switch-svg')!,
+      triggerCircleBar: shadowRoot.querySelector('.trigger-circle-bar')!,
+      triggerButton: shadowRoot.querySelector('.trigger-button')!,
+    };
+    this.registerEventListener();
+  }
+  registerEventListener(): void {
+    this.elements.componentWrapper.addEventListener('click', () => this.#onComponentClick());
+  }
+  initProp() {
+    this.#disabled = false;
+    this.value = this.getAttribute('value') === "true" || false;
+  }
+  static get observedAttributes(): string[] {
+    return ['true-title', "false-title", 'value', 'name', 'disabled',];
+  }
+  attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
+    // do something when an attribute has changed
+    this.onAttributeChange(name, newValue);
+  }
+  onAttributeChange(name: string, value: string): void {
+    switch (name) {
+      case 'value':
+        this.value = Boolean(value);
+        break;
+      case 'true-title':
+        this.elements.trueText.innerText = value;
+        break;
+      case 'false-title':
+        this.elements.falseText.innerText = value;
+        break;
+      case 'disabled':
+        if (value == '' || value === "true") {
+          this.#disabled = true;
+        } else if (value == "false" || value == null || value == undefined) {
+          this.#disabled = false;
+        }
+        break;
 
     }
-    callOnLoadEvent(): void {
-      const event = new CustomEvent('load', { bubbles: true, composed: true });
-      this.dispatchEvent(event);
+
+  }
+  #onComponentClick(): void {
+    if (this.#disabled) {
+      return;
     }
-    callOnInitEvent(): void {
-      const event = new CustomEvent('init', { bubbles: true, composed: true });
-      this.dispatchEvent(event);
+    this.#ChangeEventPreservedValue = !this.#value;
+    const isEventPrevented = this.#dispatchOnBeforeChangeEvent();
+    this.#ChangeEventPreservedValue = null;
+    if (!isEventPrevented) {
+      this.value = !this.#value;
+      this.#dispatchOnChangeEvent();
     }
-    initWebComponent(): void {
-      const shadowRoot = this.attachShadow({
-        mode: 'open',
-        delegatesFocus: true,
+  }
+  #dispatchOnBeforeChangeEvent(): boolean {
+    const event = new CustomEvent('before-change', { cancelable: true });
+    this.dispatchEvent(event);
+    const prevented = event.defaultPrevented;
+    return prevented;
+  }
+  #dispatchOnChangeEvent(): void {
+    const event = new CustomEvent('change');
+    this.dispatchEvent(event);
+  }
+  /**
+   * @public
+   */
+  //TODO: find a way to manage focus and keyboard control
+  focus() {
+    //public method
+  }
+  #updateDomForValueChange() {
+    if (this.value) {
+      this.elements.falseText.classList.remove("--active");
+      this.elements.trueText.classList.add("--active");
+      this.elements.switch.classList.add('--active');
+    } else {
+      this.elements.trueText.classList.remove("--active");
+      this.elements.falseText.classList.add("--active");
+      this.elements.switch.classList.remove('--active');
+    }
+
+  }
+  /**
+* @description this method called on every checkValidity calls and update validation result of #internal
+*/
+  #setValidationResult(result: ValidationResult<ValidationValue>) {
+    if (result.isAllValid) {
+      this.#internals.setValidity({}, '');
+    } else {
+      const states: ValidityStateFlags = {};
+      let message = "";
+      result.validationList.forEach((res) => {
+        if (!res.isValid) {
+          if (res.validation.stateType) { states[res.validation.stateType] = true; }
+          if (message == '') { message = res.message; }
+        }
       });
-      const html = `<style>${CSS}</style>` + '\n' + HTML;
-      const element = document.createElement('template');
-      element.innerHTML = html;
-      shadowRoot.appendChild(element.content.cloneNode(true));
-      this.elements = {
-        componentWrapper: shadowRoot.querySelector('.jb-switch-web-component')!,
-        falseText: shadowRoot.querySelector('.false-text')!,
-        trueText: shadowRoot.querySelector('.true-text')!,
-        switch: shadowRoot.querySelector('.switch-svg')!,
-        triggerCircleBar:shadowRoot.querySelector('.trigger-circle-bar')!,
-        triggerButton:shadowRoot.querySelector('.trigger-button')!,
-      };
-      this.registerEventListener();
+      this.#internals.setValidity(states, message);
     }
-    registerEventListener(): void {
-      this.elements.componentWrapper.addEventListener('click', () => this.#onComponentClick());
+  }
+  #GetInsideValidationsCallback():ValidationItem<ValidationValue>[]{
+    if(this.#required){
+      return [{
+        validator:(value)=>value!==false,
+        message:"سوییچ میبایست فعال شود"
+      }];
     }
-    initProp() {
-      this.#disabled = false;
-      this.value = this.getAttribute('value') === "true" || false;
-    }
-    static get observedAttributes(): string[] {
-      return ['true-title', "false-title", 'value', 'name', 'disabled',];
-    }
-    attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
-      // do something when an attribute has changed
-      this.onAttributeChange(name, newValue);
-    }
-    onAttributeChange(name: string, value: string): void {
-      switch (name) {
-        case 'value':
-          this.value = Boolean(value);
-          break;
-        case 'name':
-          this.elements.componentWrapper.setAttribute('name', value);
-          break;
-        case 'true-title':
-          this.elements.trueText.innerText = value;
-          break;
-        case 'false-title':
-          this.elements.falseText.innerText = value;
-          break;
-        case 'disabled':
-          if (value == '' || value === "true") {
-            this.#disabled = true;
-          } else if (value == "false" || value == null || value == undefined) {
-            this.#disabled = false;
-          }
-          break;
+    return [];
+  }
+  showValidationError(message: string) {
+    //TODO: implement it
+  }
+  clearValidationError() {
+    //TODO: implement it
+  }
+  get validationMessage(){
+    return this.#internals.validationMessage;
+  }
 
-      }
-
-    }
-    #onComponentClick(): void {
-      if (this.#disabled) {
-        return;
-      }
-      this.#ChangeEventPreservedValue = !this.#value;
-      const isEventPrevented = this.#dispatchOnBeforeChangeEvent();
-      this.#ChangeEventPreservedValue = null;
-      if(!isEventPrevented){
-        this.value = !this.#value;
-        this.#dispatchOnChangeEvent();
-      }
-    }
-    #dispatchOnBeforeChangeEvent(): boolean {
-      const event = new CustomEvent('before-change',{cancelable:true});
-      this.dispatchEvent(event);
-      const prevented = event.defaultPrevented;
-      return prevented;
-    }
-    #dispatchOnChangeEvent(): void {
-      const event = new CustomEvent('change');
-      this.dispatchEvent(event);
-    }
-    /**
-     * @public
-     */
-    //TODO: find a way to manage focus and keyboard control
-    focus() {
-      //public method
-      //this.elements.input.focus();
-    }
-    #updateDomForValueChange() {
-      if (this.value) {
-        this.elements.falseText.classList.remove("--active");
-        this.elements.trueText.classList.add("--active");
-        this.elements.switch.classList.add('--active');
-      } else {
-        this.elements.trueText.classList.remove("--active");
-        this.elements.falseText.classList.add("--active");
-        this.elements.switch.classList.remove('--active');
-      }
-
-    }
+  checkValidity(){
+    return this.#validation.checkValidity(false).isAllValid;
+  }
+  reportValidity(){
+    return this.#validation.checkValidity(true).isAllValid;
+  }
 }
 const myElementNotExists = !customElements.get('jb-switch');
 if (myElementNotExists) {

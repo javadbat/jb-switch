@@ -6,3 +6,4 @@ export type ElementsObject = {
     triggerCircleBar:SVGCircleElement,
     triggerButton:SVGGElement
 }
+export type ValidationValue = boolean
