@@ -41,7 +41,14 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
       this.elements.triggerCircleBar.classList.remove('--loading');
     }
   }
-  #validation = new ValidationHelper(this.showValidationError.bind(this), this.clearValidationError.bind(this), () => (this.value), () =>(this.value ? 'true' : 'false'), () => [],this.#setValidationResult.bind(this))
+  #validation = new ValidationHelper({
+    clearValidationError:this.clearValidationError.bind(this),
+    getInputtedValue:() => (this.value),
+    getInsideValidations:() => [],
+    getValueString: () =>(this.value ? 'true' : 'false'),
+    setValidationResult:this.#setValidationResult.bind(this),
+    showValidationError:this.showValidationError.bind(this)
+  })
   get validation(){
     return this.#validation;
   }
@@ -55,7 +62,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
   #required = false;
   set required(value:boolean){
     this.#required = value;
-    this.#validation.checkValidity(false);
+    this.#validation.checkValiditySync({showError:false});
   }
   get required() {
     return this.#required;
@@ -234,10 +241,10 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
   }
 
   checkValidity(){
-    return this.#validation.checkValidity(false).isAllValid;
+    return this.#validation.checkValiditySync({showError:false}).isAllValid;
   }
   reportValidity(){
-    return this.#validation.checkValidity(true).isAllValid;
+    return this.#validation.checkValiditySync({showError:true}).isAllValid;
   }
 }
 const myElementNotExists = !customElements.get('jb-switch');

@@ -1,5 +1,9 @@
 # changelog
 
+## [1.3.0] - 2024-01-23
+### new features:
+    - support async validation
+
 ## [1.2.0] - 2024-01-23
 ### new features:
     - add validation module
