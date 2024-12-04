@@ -43,8 +43,8 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
   }
   #validation = new ValidationHelper({
     clearValidationError:this.clearValidationError.bind(this),
-    getInputtedValue:() => (this.value),
-    getInsideValidations:() => [],
+    getValue:() => (this.value),
+    getValidations:() => [],
     getValueString: () =>(this.value ? 'true' : 'false'),
     setValidationResult:this.#setValidationResult.bind(this),
     showValidationError:this.showValidationError.bind(this)
