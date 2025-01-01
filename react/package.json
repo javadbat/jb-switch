@@ -1,0 +1,37 @@
+{
+  "name": "jb-switch-react",
+  "description": "react switch component",
+  "type": "module",
+  "author": {
+		"name": "mohammad javad bathaei",
+		"email": "javadbat@gmail.com"
+	},
+  "keywords": [
+    "jb",
+    "jb-switch",
+    "react switch",
+    "switch",
+    "form",
+    "react"
+  ],
+  "version": "0.3.1",
+  "bugs": "https://github.com/javadbat/jb-switch/issues",
+  "license": "MIT",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "index.js",
+    "lib/",
+    "dist/"
+  ],
+  "main": "./index.js",
+  "module": "./index.js",
+  "types": "./dist/web-component/jb-switch/react/lib/JBSwitch.d.ts",
+  "repository": {
+		"type": "git",
+		"url": "git@github.com:javadbat/jb-switch.git"
+  },
+  "dependencies": {
+    "jb-switch": ">=1.2.1"
+  }
+}
