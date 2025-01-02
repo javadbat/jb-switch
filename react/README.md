@@ -1,4 +1,4 @@
-# jb-switch-react
+# jb-switch React component
 
 simple switch component for react with loading ability
 sample:<https://codepen.io/javadbat/pen/jOyXKNJ>

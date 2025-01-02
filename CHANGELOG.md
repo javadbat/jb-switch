@@ -1,5 +1,9 @@
 # changelog
 
+## [1.4.0] - 2024-02-1
+### new features:
+    - move react component from `jb-switch-react` to `jb-switch/react`
+
 ## [1.3.0] - 2024-01-23
 ### new features:
     - support async validation
