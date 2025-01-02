@@ -1,7 +1,13 @@
 # jb-switch React component
 
-simple switch component for react with loading ability
+switch react component.
+
+> this component is a react wrapper for [jb-switch](https://github.com/javadbat/jb-switch)
+
 sample:<https://codepen.io/javadbat/pen/jOyXKNJ>
+
+
+Demo :  Demo: [codeSandbox preview](https://3f63dj.csb.app/samples/jb-switch) for just see the demo and [codeSandbox editor](https://codesandbox.io/p/sandbox/jb-design-system-3f63dj?file=%2Fsrc%2Fsamples%2FJBSwitch.tsx) if you want to see and play with code
 
 ## installation
 
@@ -9,7 +15,7 @@ run `npm install jb-switch` to install package with npm
 
 ## usage
 
-import component in your page `import {JBSwitch} from 'jb-switch'`  
+import component in your page `import {JBSwitch} from 'jb-switch/react'`  
 
 use below syntax in your render function
 
@@ -33,4 +39,4 @@ if you want to show loading in switch just make `isLoading = true`
 ```
 
 demo image:    
-![](demo-gif.gif)
+![](./demo-gif.gif)
