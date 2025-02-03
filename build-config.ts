@@ -24,5 +24,7 @@ export const reactComponentList: ReactComponentBuildConfig[] = [
       "jb-switch": "JBSwitch",
       "prop-types": "PropTypes",
     },
+    umdName: "JBSwitchReact",
+    dir: "./react"
   },
 ];
