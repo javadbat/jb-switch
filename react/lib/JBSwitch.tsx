@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState, useImperativeHandle, useCallback, }
 import 'jb-switch';
 // eslint-disable-next-line no-duplicate-imports
 import { JBSwitchWebComponent, ValidationValue } from 'jb-switch';
-import { useBindEvent } from '../../../../common/hooks/use-event.js';
 import { type ValidationItem } from 'jb-validation';
+import { EventProps, useEvents } from './events-hook.js';
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -19,14 +19,11 @@ declare global {
     }
   }
 }
-export type JBSwitchEventType<T> = T & {
-  target: JBSwitchWebComponent
-}
-export type JBSwitchProps = {
+
+export type JBSwitchProps = EventProps & {
   style?: string,
   name?: string,
   className?: string,
-  onChange?: (e: JBSwitchEventType<Event>) => void | null | undefined,
   value?: boolean | null | undefined,
   trueTitle?: string | null | undefined,
   falseTitle?: string | null | undefined,
@@ -45,18 +42,7 @@ export const JBSwitch = React.forwardRef((props: JBSwitchProps, ref) => {
   useEffect(() => {
     refChangeCountSetter(refChangeCount + 1);
   }, [element.current]);
-  const onchange = useCallback((e: JBSwitchEventType<Event>) => {
-    if (props.value !== undefined && props.value !== null) {
-      e.preventDefault();
-    }
-    if (typeof props.onChange == "function") {
-      props.onChange(e);
-    }
-  }, [props.onChange, props.value]);
 
-
-  useBindEvent(element, 'before-change', onchange, true);
-  // useEvent(element.current, 'change', onchange, true);
 
   useEffect(() => {
     if (element.current && props.isLoading !== undefined && props.isLoading !== null && typeof props.isLoading == "boolean") {
@@ -77,15 +63,17 @@ export const JBSwitch = React.forwardRef((props: JBSwitchProps, ref) => {
   useEffect(() => {
     if (element.current && typeof props.name == "string") {
       element.current.setAttribute("name", props.name);
-    }else if(element.current && props.name == null){
+    } else if (element.current && props.name == null) {
       element.current.removeAttribute("name");
     }
   }, [props.name]);
   useEffect(() => {
-    if (element.current && Array.isArray( props.validationList)) {
+    if (element.current && Array.isArray(props.validationList)) {
       element.current.validation.list = props.validationList;
     }
   }, [props.validationList]);
+
+  useEvents(element, props);
 
   return (
     <jb-switch class={props.className ? props.className : ""} true-title={props.trueTitle ? props.trueTitle : ''} false-title={props.falseTitle ? props.falseTitle : ''} ref={element}>

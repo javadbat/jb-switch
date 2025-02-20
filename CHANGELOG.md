@@ -1,5 +1,9 @@
 # changelog
 
+## [] - UPComing
+### changed:
+    - refactor event system and use `jb-core` event modules
+
 ## [1.4.0] - 2024-02-1
 ### new features:
     - move react component from `jb-switch-react` to `jb-switch/react`
