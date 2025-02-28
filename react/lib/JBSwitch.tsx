@@ -20,7 +20,7 @@ declare global {
   }
 }
 
-export type JBSwitchProps = EventProps & {
+export type Props = EventProps & {
   style?: string,
   name?: string,
   className?: string,
@@ -31,7 +31,7 @@ export type JBSwitchProps = EventProps & {
   validationList?: ValidationItem<ValidationValue>[] | null,
 }
 
-export const JBSwitch = React.forwardRef((props: JBSwitchProps, ref) => {
+export const JBSwitch = React.forwardRef((props: Props, ref) => {
   const element = useRef<JBSwitchWebComponent>(null);
   const [refChangeCount, refChangeCountSetter] = useState(0);
   useImperativeHandle(
