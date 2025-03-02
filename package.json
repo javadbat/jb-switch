@@ -31,7 +31,7 @@
     "type": "git",
     "url": "https://github.com/javadbat/jb-switch"
   },
-  "types": "./dist/web-component/jb-switch/lib/jb-switch.d.ts",
+  "types": "./dist/jb-switch.d.ts",
   "dependencies": {
     "jb-validation": ">=0.2.0",
     "jb-core":">=0.1.0"

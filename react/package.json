@@ -26,7 +26,7 @@
   ],
   "main": "./index.js",
   "module": "./index.js",
-  "types": "./dist/web-component/jb-switch/react/lib/JBSwitch.d.ts",
+  "types": "./dist/JBSwitch.d.ts",
   "repository": {
 		"type": "git",
 		"url": "git@github.com:javadbat/jb-switch.git"
