@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useImperativeHandle, useCallback, } from 'react';
+import React, { useEffect, useRef, useState, useImperativeHandle, useCallback, CSSProperties, } from 'react';
 import 'jb-switch';
 // eslint-disable-next-line no-duplicate-imports
 import { JBSwitchWebComponent, ValidationValue } from 'jb-switch';
@@ -21,7 +21,7 @@ declare global {
 }
 
 export type Props = EventProps & {
-  style?: string,
+  style?: CSSProperties,
   name?: string,
   className?: string,
   value?: boolean | null | undefined,
