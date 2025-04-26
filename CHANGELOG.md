@@ -1,8 +1,9 @@
 # changelog
 
-## [] - UPComing
+## [1.5.0] - 2025-04-26
 ### changed:
-    - refactor event system and use `jb-core` event modules
+    - refactor event system and use `jb-core` event modules.
+    - use jb design system color palette.
 
 ## [1.4.0] - 2024-02-1
 ### new features:

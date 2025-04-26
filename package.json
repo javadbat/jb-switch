@@ -13,7 +13,7 @@
     "switch",
     "web component"
   ],
-  "version": "1.4.1",
+  "version": "1.5.0",
   "bugs": "https://github.com/javadbat/jb-switch/issues",
   "license": "MIT",
   "files": [

@@ -1,3 +1,5 @@
+@use './variables.css';
+
 :host(:focus),
 :host(:focus-visible) {
     outline: none;
@@ -15,9 +17,9 @@
     flex-direction: row;
     align-items: center;
     justify-content: start;
+    gap: 0.5rem;
     .caption{
         display: inline-block;
-        padding: 0 0 0 8px;
         color: inherit;
         transition: all 0.3s ease-in-out;
         &.--active{
@@ -41,14 +43,14 @@
                     }
                 }
                 .trigger-circle-bar{
-                    stroke:var(--jb-switch-ring-color-active, #00dc55);
+                    stroke:var(--ring-color-active);
                 }
                 .bg-bar{
-                    fill:var(--jb-switch-bg-color-active, #00dc55);
+                    fill:var(--bg-color-active);
                 }
             }
             .bg-bar{
-                fill:var(--jb-switch-bg-color, #e3e3e3);
+                fill: var(--bg-color);
                 transition: all 0.3s ease-in-out;
             }
             .trigger-button{
@@ -65,7 +67,7 @@
             }
             .trigger-circle-bar{
                 fill:transparent;
-                stroke:var(--jb-switch-ring-color, #039be5);
+                stroke:var(--ring-color);
                 stroke-width: 20px;
                 transition: all 0.3s ease-in-out;
                 stroke-dasharray: 800,800;

@@ -3,6 +3,8 @@ import CSS from './jb-switch.scss';
 import { ValidationHelper, ValidationItem, ValidationResult, type WithValidation } from 'jb-validation';
 import { type JBFormInputStandards } from 'jb-form';
 import { ElementsObject, ValidationValue } from './types.js';
+import {defineColors} from 'jb-core/theme';
+
 export * from './types.js';
 export class JBSwitchWebComponent extends HTMLElement implements WithValidation, JBFormInputStandards<boolean> {
   static get formAssociated() { return true; }
@@ -108,6 +110,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
       mode: 'open',
       delegatesFocus: true,
     });
+    defineColors();
     const html = `<style>${CSS}</style>` + '\n' + HTML;
     const element = document.createElement('template');
     element.innerHTML = html;

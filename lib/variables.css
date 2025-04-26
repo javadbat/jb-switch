@@ -1,0 +1,6 @@
+:host{
+  --ring-color-active:var(--jb-switch-ring-color-active, var(--jb-green));
+  --bg-color-active:var(--jb-switch-bg-color-active, var(--jb-green));
+  --bg-color: var(--jb-switch-bg-color, var(--jb-neutral-10));
+  --ring-color:var(--jb-switch-ring-color, var(--jb-primary));
+}
