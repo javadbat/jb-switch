@@ -6,7 +6,7 @@ import JBSwitchIsLoadingTest from './samples/JBSwitchIsLoadingTestPage';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<Props> = {
-  title: "Example/form elements/JBSwitch",
+  title: "Components/form elements/JBSwitch",
   component: JBSwitch,
 };
 export default meta;

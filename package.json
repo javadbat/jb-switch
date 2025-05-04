@@ -33,7 +33,7 @@
   },
   "types": "./dist/jb-switch.d.ts",
   "dependencies": {
-    "jb-validation": ">=0.2.0",
-    "jb-core":">=0.4.0"
+    "jb-validation": ">=0.4.0",
+    "jb-core":">=0.14.0"
   }
 }
