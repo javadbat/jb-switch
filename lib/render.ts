@@ -1,4 +1,6 @@
-<div class="jb-switch-web-component">
+export function renderHTML(): string {
+  return /* html */ `
+  <div class="jb-switch-web-component">
     <div class="caption true-text"></div>
     <div class="svg-wrapper">
         <svg class="switch-svg" viewBox=" 0 0 710 440">
@@ -32,3 +34,5 @@
     </div>
     <div class="caption false-text"></div>
     </div>
+  `;
+}

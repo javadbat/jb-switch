@@ -1,9 +1,9 @@
-import HTML from './jb-switch.html';
 import CSS from './jb-switch.scss';
 import { ValidationHelper, ValidationItem, ValidationResult, type WithValidation } from 'jb-validation';
 import { type JBFormInputStandards } from 'jb-form';
 import { ElementsObject, ValidationValue } from './types.js';
 import {registerDefaultVariables} from 'jb-core/theme';
+import { renderHTML } from './render';
 
 export * from './types.js';
 export class JBSwitchWebComponent extends HTMLElement implements WithValidation, JBFormInputStandards<boolean> {
@@ -111,7 +111,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
       delegatesFocus: true,
     });
     registerDefaultVariables();
-    const html = `<style>${CSS}</style>` + '\n' + HTML;
+    const html = `<style>${CSS}</style>` + '\n' + renderHTML();
     const element = document.createElement('template');
     element.innerHTML = html;
     shadowRoot.appendChild(element.content.cloneNode(true));
