@@ -1,6 +1,5 @@
 import React from 'react';
 import {JBSwitch, Props} from 'jb-switch/react';
-import { action } from '@storybook/addon-actions';
 import JBSwitchTest from './samples/JBSwitchTestPage';
 import JBSwitchIsLoadingTest from './samples/JBSwitchIsLoadingTestPage';
 import type { Meta, StoryObj } from '@storybook/react';
@@ -17,7 +16,7 @@ export const Normal:Story = {
     value:false,
     trueTitle:'فعال',
     falseTitle:'غیر فعال',
-    onChange:(e)=>{console.log(e);action('onChange')(e);}
+    onChange:(e)=>{console.log(e)}
   }
 };
 
@@ -26,7 +25,7 @@ export const RTL:Story = {
     value:false,
     trueTitle:'فعال',
     falseTitle:'غیر فعال',
-    onChange:(e)=>{console.log(e);action('onChange')(e);}
+    onChange:(e)=>{console.log(e);}
   },
   parameters: {
     themes:{
@@ -50,7 +49,7 @@ export const LoadingActionTest = {
     falseTitle:'غیر فعال',
     value:false,
     isLoading:true,
-    onChange:(e)=>{console.log(e);action('onChange')(e);}
+    onChange:(e)=>{console.log(e);}
   }
 };
 
@@ -60,6 +59,6 @@ export const WebComponent:StoryObj<any> = {
     value:false,
     trueTitle:'فعال',
     falseTitle:'غیر فعال',
-    onChange:(e)=>{console.log(e);action('onChange')(e);}
+    onChange:(e)=>{console.log(e);}
   }
 };
