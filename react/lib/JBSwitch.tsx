@@ -1,11 +1,12 @@
-import React, { useEffect, useRef, useState, useImperativeHandle, useCallback, CSSProperties, } from 'react';
+'use client'
+import React, { useEffect, useRef, useState, useImperativeHandle, CSSProperties, } from 'react';
 import 'jb-switch';
 // eslint-disable-next-line no-duplicate-imports
 import { JBSwitchWebComponent, ValidationValue } from 'jb-switch';
 import { type ValidationItem } from 'jb-validation';
 import { EventProps, useEvents } from './events-hook.js';
 
-declare global {
+declare module "react" {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace JSX {
     interface IntrinsicElements {
