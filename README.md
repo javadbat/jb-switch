@@ -1,6 +1,5 @@
 # jb-switch
 
-
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/jb-switch)
 [![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://raw.githubusercontent.com/javadbat/jb-switch/main/LICENSE)
 [![NPM Downloads](https://img.shields.io/npm/dw/jb-switch)](https://www.npmjs.com/package/jb-switch)
@@ -12,12 +11,16 @@ switch web-component with these benefits:
 - beautiful animation
 - customizable with your style with just css variable
 
+## Demo
+-[storybook](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch)
+
 ## using with JS frameworks
 
 to use this component in **react** see [`jb-switch/react`](https://github.com/javadbat/jb-switch/tree/main/react);
 
 ## usage
-```terminal
+
+```sh
 npm i jb-switch
 ```
 

@@ -6,20 +6,22 @@ switch react component.
 
 sample:<https://codepen.io/javadbat/pen/jOyXKNJ>
 
+## Demo
 
-Demo :  Demo: [codeSandbox preview](https://3f63dj.csb.app/samples/jb-switch) for just see the demo and [codeSandbox editor](https://codesandbox.io/p/sandbox/jb-design-system-3f63dj?file=%2Fsrc%2Fsamples%2FJBSwitch.tsx) if you want to see and play with code
+- [codeSandbox preview](https://3f63dj.csb.app/samples/jb-switch) for just see the demo and [codeSandbox editor](https://codesandbox.io/p/sandbox/jb-design-system-3f63dj?file=%2Fsrc%2Fsamples%2FJBSwitch.tsx) if you want to see and play with code
+
+-[storybook](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch)
 
 ## installation
 
-run `npm install jb-switch` to install package with npm
-
+```sh
+npm install jb-switch
+```
 ## usage
 
-import component in your page `import {JBSwitch} from 'jb-switch/react'`  
-
-use below syntax in your render function
-
 ```jsx
+import {JBSwitch} from 'jb-switch/react'
+
 <JBSwitch value={booleanValue} isLoading={isLoading} trueTitle='true caption' falseTitle='false caption' onChange={(e)=>onChange(e)} ></JBSwitch>
 ```
 
