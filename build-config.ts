@@ -5,12 +5,13 @@ export const webComponentList: WebComponentBuildConfig[] = [
     name: "jb-switch",
     path: "./lib/jb-switch.ts",
     outputPath: "./dist/jb-switch.js",
-    external: ['jb-validation', 'jb-form', 'jb-core', 'jb-core/theme'],
+    external: ['jb-validation', 'jb-form', 'jb-core', 'jb-core/theme', "jb-core/i18n"],
     globals: {
       'jb-validation': "JBValidation",
       'jb-form': "JBForm",
       'jb-core': "JBCore",
-      'jb-core/theme': "JBCoreTheme"
+      'jb-core/theme': "JBCoreTheme",
+      'jb-core/i18n':"JBCoreI18N"
     },
     umdName: "JBSwitch",
   },

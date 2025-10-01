@@ -1,5 +1,9 @@
 # changelog
 
+## [1.6.0] - 2025-10-01
+### new features:
+    - add i18n support
+
 ## [1.5.0] - 2025-04-26
 ### changed:
     - refactor event system and use `jb-core` event modules.

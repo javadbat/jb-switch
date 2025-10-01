@@ -13,7 +13,7 @@
     "switch",
     "web component"
   ],
-  "version": "1.5.0",
+  "version": "1.6.0",
   "bugs": "https://github.com/javadbat/jb-switch/issues",
   "license": "MIT",
   "files": [
@@ -34,6 +34,6 @@
   "types": "./dist/jb-switch.d.ts",
   "dependencies": {
     "jb-validation": ">=0.4.0",
-    "jb-core":">=0.14.0"
+    "jb-core":">=0.18.1"
   }
 }

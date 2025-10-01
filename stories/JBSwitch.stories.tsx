@@ -14,8 +14,8 @@ type Story = StoryObj<typeof JBSwitch>;
 export const Normal:Story = {
   args:{
     value:false,
-    trueTitle:'فعال',
-    falseTitle:'غیر فعال',
+    trueTitle:'active',
+    falseTitle:'deactivate',
     onChange:(e)=>{console.log(e)}
   }
 };
@@ -37,16 +37,16 @@ export const RTL:Story = {
 export const ActionTest:Story = {
   render: (args) => <JBSwitchTest {...args} />,
   args:{
-    trueTitle:'فعال',
-    falseTitle:'غیر فعال',
+    trueTitle:'active',
+    falseTitle:'deactivate',
   }
 };
 
 export const LoadingActionTest = {
   render: (args)=><JBSwitchIsLoadingTest {...args}></JBSwitchIsLoadingTest>,
   args:{
-    trueTitle:'فعال',
-    falseTitle:'غیر فعال',
+    trueTitle:'active',
+    falseTitle:'deactivate',
     value:false,
     isLoading:true,
     onChange:(e)=>{console.log(e);}
@@ -57,8 +57,8 @@ export const WebComponent:StoryObj<any> = {
   render:(args:any) => <jb-switch true-title={args.trueTitle} false-title={args.falseTitle}></jb-switch>,
   args:{
     value:false,
-    trueTitle:'فعال',
-    falseTitle:'غیر فعال',
-    onChange:(e)=>{console.log(e);}
+    trueTitle:'active',
+    falseTitle:'deactivate',
+    onChange:(e:any)=>{console.log(e);}
   }
 };

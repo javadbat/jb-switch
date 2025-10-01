@@ -5,6 +5,8 @@ import { type JBFormInputStandards } from 'jb-form';
 import { ElementsObject, ValidationValue } from './types.js';
 import {registerDefaultVariables} from 'jb-core/theme';
 import { renderHTML } from './render';
+import { dictionary } from './i18n';
+import { i18n } from 'jb-core/i18n';
 
 export * from './types.js';
 export class JBSwitchWebComponent extends HTMLElement implements WithValidation, JBFormInputStandards<boolean> {
@@ -47,7 +49,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
   #validation = new ValidationHelper({
     clearValidationError:this.clearValidationError.bind(this),
     getValue:() => (this.value),
-    getValidations:() => [],
+    getValidations:this.#getInsideValidationsCallback.bind(this),
     getValueString: () =>(this.value ? 'true' : 'false'),
     setValidationResult:this.#setValidationResult.bind(this),
     showValidationError:this.showValidationError.bind(this)
@@ -225,11 +227,11 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
       this.#internals.setValidity(states, message);
     }
   }
-  #GetInsideValidationsCallback():ValidationItem<ValidationValue>[]{
+  #getInsideValidationsCallback():ValidationItem<ValidationValue>[]{
     if(this.#required){
       return [{
         validator:(value)=>value!==false,
-        message:"سوییچ میبایست فعال شود"
+        message:dictionary.get(i18n,'requireMessage')
       }];
     }
     return [];
