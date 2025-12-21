@@ -90,6 +90,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
     if (typeof this.attachInternals == "function") {
       //some browser don't support attachInternals
       this.#internals = this.attachInternals();
+      this.#internals.role = "switch";
     }
     this.initWebComponent();
   }
