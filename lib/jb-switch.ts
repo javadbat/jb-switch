@@ -102,20 +102,22 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
 
   }
   callOnLoadEvent(): void {
-    const event = new CustomEvent('load', { bubbles: true, composed: true });
+    const event = new CustomEvent('load', { bubbles: true, composed: false });
     this.dispatchEvent(event);
   }
   callOnInitEvent(): void {
-    const event = new CustomEvent('init', { bubbles: true, composed: true });
+    const event = new CustomEvent('init', { bubbles: true, composed: false });
     this.dispatchEvent(event);
   }
   initWebComponent(): void {
     const shadowRoot = this.attachShadow({
       mode: 'open',
       delegatesFocus: true,
+      clonable:true,
+      serializable:true
     });
     registerDefaultVariables();
-    const html = `<style>${CSS} ${VariablesCSS}</style>` + '\n' + renderHTML();
+    const html = `<style>${CSS} ${VariablesCSS}</style>\n${renderHTML()}`;
     const element = document.createElement('template');
     element.innerHTML = html;
     shadowRoot.appendChild(element.content.cloneNode(true));

@@ -1,5 +1,9 @@
 # changelog
 
+## [] - 2026-03-11
+### new features:
+    - support react standard props
+
 ## [1.6.0] - 2025-10-01
 ### new features:
     - add i18n support
