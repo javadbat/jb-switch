@@ -1,6 +1,6 @@
 import CSS from './jb-switch.css';
 import VariablesCSS from './variables.css';
-import { ValidationHelper, ValidationItem, ValidationResult, type WithValidation } from 'jb-validation';
+import { ValidationHelper, ValidationItem, ValidationResult, type WithValidation, type ShowValidationErrorParameters } from 'jb-validation';
 import { type JBFormInputStandards } from 'jb-form';
 import { ElementsObject, ValidationValue } from './types.js';
 import {registerDefaultVariables} from 'jb-core/theme';
@@ -37,6 +37,9 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
   #isLoading = false;
   get isLoading() {
     return this.#isLoading;
+  }
+  get form(){
+    return this.#internals?.form??null;
   }
   set isLoading(value: boolean) {
     this.#isLoading = value;
@@ -217,17 +220,17 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
 */
   #setValidationResult(result: ValidationResult<ValidationValue>) {
     if (result.isAllValid) {
-      this.#internals.setValidity({}, '');
+      this.#internals?.setValidity({}, '');
     } else {
       const states: ValidityStateFlags = {};
       let message = "";
       result.validationList.forEach((res) => {
         if (!res.isValid) {
           if (res.validation.stateType) { states[res.validation.stateType] = true; }
-          if (message == '') { message = res.message; }
+          if (message == '') { message = res.message??""; }
         }
       });
-      this.#internals.setValidity(states, message);
+      this.#internals?.setValidity(states, message);
     }
   }
   #getInsideValidationsCallback():ValidationItem<ValidationValue>[]{
@@ -239,14 +242,14 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
     }
     return [];
   }
-  showValidationError(message: string) {
+  showValidationError(params: ShowValidationErrorParameters) {
     //TODO: implement it
   }
   clearValidationError() {
     //TODO: implement it
   }
   get validationMessage(){
-    return this.#internals.validationMessage;
+    return this.#internals?.validationMessage??"";
   }
 
   checkValidity(){
