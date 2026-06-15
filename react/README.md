@@ -17,13 +17,11 @@ sample:<https://codepen.io/javadbat/pen/jOyXKNJ>
 
 -[storybook](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch)
 
-## installation
-
+## Installation
 ```sh
 npm install jb-switch
 ```
-## usage
-
+## Usage
 ```jsx
 import {JBSwitch} from 'jb-switch/react'
 
@@ -47,3 +45,7 @@ if you want to show loading in switch just make `isLoading = true`
 
 demo image:    
 ![](./demo-gif.gif)
+
+## Shared Documentation
+
+For web-component behavior, events, slots, and CSS variables, see [`jb-switch`](https://github.com/javadbat/jb-switch).
