@@ -17,7 +17,7 @@ switch web-component with these benefits:
 
 ## using with JS frameworks
 
-to use this component in **react** see [`jb-switch/react`](https://github.com/javadbat/jb-switch/tree/main/react);
+- [<img src="https://img.shields.io/badge/React.js-jb--switch%2Freact-000.svg?logo=react&logoColor=%2361DAFB" height="30" />](https://github.com/javadbat/jb-switch/tree/main/react)
 
 ## usage
 
