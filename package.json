@@ -19,6 +19,7 @@
   "files": [
     "LICENSE",
     "README.md",
+    "custom-elements.json",
     "lib/",
     "dist/",
     "react/",
@@ -26,6 +27,7 @@
   ],
   "main": "index.js",
   "module": "index.js",
+  "customElements": "custom-elements.json",
   "homepage": "https://github.com/javadbat/jb-switch",
   "repository": {
     "type": "git",

@@ -25,13 +25,16 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
     return this.#value;
   }
   set value(value: boolean) {
-    if (this.#value !== value) {
-      this.#value = value;
+    const booleanValue = Boolean(value);
+    if (this.#value !== booleanValue) {
+      this.#value = booleanValue;
     }
     this.#updateDomForValueChange();
-    //comment for typescript problem
-    if (this.#internals && typeof this.#internals.setFormValue == "function") {
-      this.#internals.setFormValue(`${value}`);
+    this.#setFormValue();
+  }
+  #setFormValue() {
+    if (this.#internals && typeof this.#internals.setFormValue === "function") {
+      this.#internals.setFormValue(`${this.#value}`);
     }
   }
   #isLoading = false;
@@ -42,8 +45,8 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
     return this.#internals?.form??null;
   }
   set isLoading(value: boolean) {
-    this.#isLoading = value;
-    if (value) {
+    this.#isLoading = Boolean(value);
+    if (this.#isLoading) {
       this.elements.triggerCircleBar.classList.add('--loading');
     } else {
       this.elements.triggerCircleBar.classList.remove('--loading');
@@ -69,7 +72,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
   }
   #required = false;
   set required(value:boolean){
-    this.#required = value;
+    this.#required = Boolean(value);
     this.#validation.checkValiditySync({showError:false});
   }
   get required() {
@@ -80,17 +83,17 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
     return this.#disabled;
   }
   set disabled(value:boolean){
-    this.#disabled = value;
-    if(value){
+    this.#disabled = Boolean(value);
+    if(this.#disabled){
       //TODO: remove as any when typescript support
-      (this.#internals as any).states?.add("disabled");
+      (this.#internals as any)?.states?.add("disabled");
     }else{
-      (this.#internals as any).states?.delete("disabled");
+      (this.#internals as any)?.states?.delete("disabled");
     }
   }
   constructor() {
     super();
-    if (typeof this.attachInternals == "function") {
+    if (typeof this.attachInternals === "function") {
       //some browser don't support attachInternals
       this.#internals = this.attachInternals();
       this.#internals.role = "switch";
@@ -138,33 +141,37 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
     this.elements.componentWrapper.addEventListener('click', () => this.#onComponentClick());
   }
   initProp() {
-    this.#disabled = false;
-    this.value = this.getAttribute('value') === "true" || false;
+    this.value = this.getAttribute('value') === "true";
+    this.required = this.getAttribute('required') === "" || this.getAttribute('required') === "true";
+    this.disabled = this.getAttribute('disabled') === "" || this.getAttribute('disabled') === "true";
+    this.isLoading = this.getAttribute('loading') === "" || this.getAttribute('loading') === "true";
   }
   static get observedAttributes(): string[] {
-    return ['true-title', "false-title", 'value', 'name', 'disabled',];
+    return ['true-title', "false-title", 'value', 'name', 'disabled', 'loading', 'required'];
   }
-  attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
+  attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null): void {
     // do something when an attribute has changed
     this.onAttributeChange(name, newValue);
   }
-  onAttributeChange(name: string, value: string): void {
+  onAttributeChange(name: string, value: string | null): void {
     switch (name) {
       case 'value':
-        this.value = Boolean(value);
+        this.value = value === "true";
         break;
       case 'true-title':
-        this.elements.trueText.innerText = value;
+        this.elements.trueText.innerText = value ?? "";
         break;
       case 'false-title':
-        this.elements.falseText.innerText = value;
+        this.elements.falseText.innerText = value ?? "";
         break;
       case 'disabled':
-        if (value == '' || value === "true") {
-          this.#disabled = true;
-        } else if (value == "false" || value == null || value == undefined) {
-          this.#disabled = false;
-        }
+        this.disabled = value === "" || value === "true";
+        break;
+      case 'loading':
+        this.isLoading = value === "" || value === "true";
+        break;
+      case 'required':
+        this.required = value === "" || value === "true";
         break;
 
     }
@@ -227,7 +234,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
       result.validationList.forEach((res) => {
         if (!res.isValid) {
           if (res.validation.stateType) { states[res.validation.stateType] = true; }
-          if (message == '') { message = res.message??""; }
+          if (message === '') { message = res.message??""; }
         }
       });
       this.#internals?.setValidity(states, message);

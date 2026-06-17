@@ -1,0 +1,264 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "README.md",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "lib/jb-switch.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Form-associated boolean switch web component with captions, loading state, validation, and cancellable change flow.",
+          "name": "JBSwitchWebComponent",
+          "tagName": "jb-switch",
+          "customElement": true,
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "attributes": [
+            {
+              "name": "value",
+              "description": "Switch value. Only true means true.",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "name": "name",
+              "description": "Form field name.",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "name": "true-title",
+              "description": "Caption shown on the true side.",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "name": "false-title",
+              "description": "Caption shown on the false side.",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "name": "disabled",
+              "description": "Disables user interaction. Empty attribute and true mean true.",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "name": "loading",
+              "description": "Shows loading animation. Empty attribute and true mean true.",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "name": "required",
+              "description": "Requires the value to be true for validation. Empty attribute and true mean true.",
+              "type": {
+                "text": "boolean"
+              }
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "value",
+              "description": "Current boolean value.",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isLoading",
+              "description": "Shows or hides loading animation.",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "description": "Enables or disables user interaction.",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "required",
+              "description": "Requires the value to be true for validation.",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "validation",
+              "description": "Validation helper from jb-validation.",
+              "type": {
+                "text": "ValidationHelper<boolean>"
+              },
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "form",
+              "description": "Associated form from ElementInternals.",
+              "type": {
+                "text": "HTMLFormElement | null"
+              },
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "description": "Form field name from the name attribute.",
+              "type": {
+                "text": "string"
+              },
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "isDirty",
+              "description": "True when current value differs from initialValue.",
+              "type": {
+                "text": "boolean"
+              },
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "validationMessage",
+              "description": "Current validation message from ElementInternals.",
+              "type": {
+                "text": "string"
+              },
+              "readonly": true
+            }
+          ],
+          "methods": [
+            {
+              "name": "checkValidity",
+              "description": "Runs validation without showing an error message.",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "name": "reportValidity",
+              "description": "Runs validation and requests visible error handling.",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "name": "focus",
+              "description": "Public focus method placeholder. Keyboard focus management is not currently implemented."
+            },
+            {
+              "name": "clearValidationError",
+              "description": "Placeholder for clearing visible validation error UI."
+            }
+          ],
+          "events": [
+            {
+              "name": "load",
+              "description": "Dispatched from connectedCallback before initialization."
+            },
+            {
+              "name": "init",
+              "description": "Dispatched from connectedCallback after initialization."
+            },
+            {
+              "name": "before-change",
+              "description": "Cancelable event dispatched before committing a user-triggered value change."
+            },
+            {
+              "name": "change",
+              "description": "Cancelable event dispatched after value changes. Prevent default to revert the committed change."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "true-text",
+              "description": "True-side caption."
+            },
+            {
+              "name": "false-text",
+              "description": "False-side caption."
+            },
+            {
+              "name": "svg-wrapper",
+              "description": "Wrapper around the switch SVG."
+            },
+            {
+              "name": "switch",
+              "description": "The switch SVG."
+            },
+            {
+              "name": "bar",
+              "description": "Switch background bar."
+            },
+            {
+              "name": "trigger-button",
+              "description": "Movable trigger group."
+            },
+            {
+              "name": "trigger-ring",
+              "description": "Ring inside the trigger button."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--jb-switch-bg-color-active",
+              "description": "Background color when value is true."
+            },
+            {
+              "name": "--jb-switch-bg-color",
+              "description": "Background color when value is false."
+            },
+            {
+              "name": "--jb-switch-ring-color",
+              "description": "Trigger ring color when value is false."
+            },
+            {
+              "name": "--jb-switch-ring-color-active",
+              "description": "Trigger ring color when value is true."
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "JBSwitchWebComponent",
+          "declaration": {
+            "name": "JBSwitchWebComponent",
+            "module": "lib/jb-switch.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "jb-switch",
+          "declaration": {
+            "name": "JBSwitchWebComponent",
+            "module": "lib/jb-switch.ts"
+          }
+        }
+      ]
+    }
+  ]
+}

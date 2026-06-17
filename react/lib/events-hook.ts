@@ -1,5 +1,5 @@
 import { useEvent } from "jb-core/react";
-import { RefObject } from "react";
+import type { RefObject } from "react";
 import type { JBSwitchEventType, JBSwitchWebComponent } from 'jb-switch';
 
 export type EventProps = {
@@ -15,7 +15,7 @@ export type EventProps = {
   onBeforeChange?: (e: JBSwitchEventType<Event>) => void,
 
 }
-export function useEvents(element: RefObject<JBSwitchWebComponent>, props: EventProps) {
+export function useEvents(element: RefObject<JBSwitchWebComponent | null>, props: EventProps) {
   useEvent(element, 'load', props.onLoad, true);
   useEvent(element, 'init', props.onInit, true);
   useEvent(element, 'change', props.onChange);

@@ -25,10 +25,6 @@ declare module "react" {
 
 type SwitchProps = EventProps & JBSwitchAttributes & {
   name?: string,
-  trueTitle?: string | null | undefined,
-  falseTitle?: string | null | undefined,
-  value?: boolean | null | undefined,
-  isLoading?: boolean | null | undefined,
 }
 
 export type Props = SwitchProps & JBElementStandardProps<JBSwitchWebComponent, keyof SwitchProps>
@@ -41,13 +37,12 @@ export const JBSwitch = React.forwardRef((props: Props, ref) => {
     [element],
   );
 
-  //isLoading, value, name are in otherProps
-  const { validationList, onBeforeChange, onChange, onInit, onLoad, ...otherProps } = props
-  useJBSwitchAttribute(element, { validationList })
+  const { disabled, falseTitle, isLoading, required, trueTitle, validationList, value, onBeforeChange, onChange, onInit, onLoad, ...otherProps } = props
+  useJBSwitchAttribute(element, { disabled, falseTitle, isLoading, required, trueTitle, validationList, value })
   useEvents(element, { onBeforeChange, onChange, onInit, onLoad });
 
   return (
-    <jb-switch true-title={props.trueTitle ? props.trueTitle : ''} false-title={props.falseTitle ? props.falseTitle : ''} ref={element} {...otherProps}>
+    <jb-switch ref={element} {...otherProps}>
     </jb-switch>
   );
 });

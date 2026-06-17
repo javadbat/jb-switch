@@ -1,9 +1,9 @@
 export function renderHTML(): string {
   return /* html */ `
   <div class="jb-switch-web-component">
-    <div class="caption true-text"></div>
-    <div class="svg-wrapper">
-        <svg class="switch-svg" viewBox=" 0 0 710 440">
+    <div class="caption true-text" part="true-text"></div>
+    <div class="svg-wrapper" part="svg-wrapper">
+        <svg class="switch-svg" part="switch" viewBox=" 0 0 710 440">
             <defs>
                 <filter xmlns="http://www.w3.org/2000/svg" id="drop-shadow" height="150%">
                     <feGaussianBlur in="SourceAlpha" stdDeviation="7"></feGaussianBlur>
@@ -22,17 +22,17 @@ export function renderHTML(): string {
                     <stop offset="100%" style="stop-color:rgb(224,224,224); stop-opacity:1" />
                 </radialGradient>
             </defs>
-            <rect class="bg-bar" x="20" y="40" height="360" width="680" stroke="red" rx="180" stroke-width="0" />
-            <g class="trigger-button">
+            <rect class="bg-bar" part="bar" x="20" y="40" height="360" width="680" stroke="red" rx="180" stroke-width="0" />
+            <g class="trigger-button" part="trigger-button">
                 <circle class="trigger-circle" fill="url(#color1)" cx="220" cy="220" r="200"
                 filter="url(#drop-shadow)" />
-            <circle class="trigger-circle-bar" cx=" 220" cy="220" r="120"
+            <circle class="trigger-circle-bar" part="trigger-ring" cx=" 220" cy="220" r="120"
                 filter="url(#drop-shadow)" />
             </g>
 
         </svg>
     </div>
-    <div class="caption false-text"></div>
+    <div class="caption false-text" part="false-text"></div>
     </div>
   `;
 }
