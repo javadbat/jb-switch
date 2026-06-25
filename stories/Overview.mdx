@@ -1,0 +1,18 @@
+import {Meta, Title, Story, Controls, Stories, Source} from '@storybook/blocks';
+import * as SwitchStories from './JBSwitch.stories';
+
+<Meta of={SwitchStories}/>
+
+<Title>JB Switch</Title>
+
+Switch component with titled states, loading behavior, value changes, and RTL support.
+
+<Story of={SwitchStories.ActionTest}/>
+<Controls of={SwitchStories.ActionTest}/>
+<Source of={SwitchStories.ActionTest}/>
+
+## Loading behavior
+<Story of={SwitchStories.LoadingActionTest}/>
+
+## Other samples & variants
+<Stories/>
