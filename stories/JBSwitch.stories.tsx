@@ -1,15 +1,15 @@
 import React from 'react';
-import {JBSwitch, Props} from 'jb-switch/react';
+import {JBSwitch} from 'jb-switch/react';
 import JBSwitchTest from './samples/JBSwitchTestPage';
 import JBSwitchIsLoadingTest from './samples/JBSwitchIsLoadingTestPage';
 import type { Meta, StoryObj } from '@storybook/react';
 
-const meta: Meta<Props> = {
+const meta = {
   title: "Components/form elements/JBSwitch",
   component: JBSwitch,
-};
+} satisfies Meta<typeof JBSwitch>;
 export default meta;
-type Story = StoryObj<typeof JBSwitch>;
+type Story = StoryObj<typeof meta>;
 
 export const Normal:Story = {
   args:{
