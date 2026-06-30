@@ -7,21 +7,7 @@ import type { JBSwitchWebComponent } from 'jb-switch';
 import { type EventProps, useEvents } from './events-hook.js';
 import { useJBSwitchAttribute, type JBSwitchAttributes } from './attributes-hook.js';
 import type { JBElementStandardProps } from 'jb-core/react';
-
-declare module "react" {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace JSX {
-    interface IntrinsicElements {
-      'jb-switch': JBSwitchType;
-    }
-    interface JBSwitchType extends React.DetailedHTMLProps<React.HTMLAttributes<JBSwitchWebComponent>, JBSwitchWebComponent> {
-      class?: string,
-      name?: string,
-      "true-title"?: string,
-      "false-title"?: string,
-    }
-  }
-}
+import './module-declaration.js';
 
 type SwitchProps = EventProps & JBSwitchAttributes & {
   name?: string,
