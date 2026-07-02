@@ -3,6 +3,17 @@ import {JBSwitch} from 'jb-switch/react';
 import JBSwitchTest from './samples/JBSwitchTestPage';
 import JBSwitchIsLoadingTest from './samples/JBSwitchIsLoadingTestPage';
 import type { Meta, StoryObj } from '@storybook/react';
+import { expect, userEvent, waitFor } from 'storybook/test';
+import {
+  appendEventSwitch,
+  getSwitch,
+  getSwitchSvg,
+  getSwitchWrapper,
+  getTriggerCircleBar,
+  getTrueText,
+  getFalseText,
+  waitForSwitchValue,
+} from './test-utils';
 
 const meta = {
   title: "Components/form elements/JBSwitch",
@@ -17,6 +28,18 @@ export const Normal:Story = {
     trueTitle:'active',
     falseTitle:'deactivate',
     onChange:(e)=>{console.log(e)}
+  },
+  play: async ({ canvasElement, args }) => {
+    const switchElement = getSwitch(canvasElement);
+
+    await waitFor(() => {
+      expect(switchElement.value).toBe(args.value);
+      expect(getTrueText(switchElement).textContent).toBe(args.trueTitle);
+      expect(getFalseText(switchElement).textContent).toBe(args.falseTitle);
+    });
+
+    await userEvent.click(getSwitchWrapper(switchElement));
+    await waitForSwitchValue(switchElement, true);
   }
 };
 
@@ -31,6 +54,14 @@ export const RTL:Story = {
     themes:{
       themeOverride:'rtl'
     }
+  },
+  play: async ({ canvasElement, args }) => {
+    const switchElement = getSwitch(canvasElement);
+
+    await waitFor(() => {
+      expect(getTrueText(switchElement).textContent).toBe(args.trueTitle);
+      expect(getFalseText(switchElement).textContent).toBe(args.falseTitle);
+    });
   }
 };
 
@@ -50,6 +81,22 @@ export const LoadingActionTest = {
     value:false,
     isLoading:true,
     onChange:(e)=>{console.log(e);}
+  },
+  play: async ({ canvasElement }) => {
+    const switchElement = getSwitch(canvasElement);
+
+    await userEvent.click(getSwitchWrapper(switchElement));
+
+    await waitFor(() => {
+      expect(switchElement.isLoading).toBe(true);
+      expect(getTriggerCircleBar(switchElement).classList.contains('--loading')).toBe(true);
+    });
+
+    await waitFor(() => {
+      expect(switchElement.value).toBe(true);
+      expect(switchElement.isLoading).toBe(false);
+      expect(getTriggerCircleBar(switchElement).classList.contains('--loading')).toBe(false);
+    }, { timeout: 2500 });
   }
 };
 
@@ -60,5 +107,53 @@ export const WebComponent:StoryObj<any> = {
     trueTitle:'active',
     falseTitle:'deactivate',
     onChange:(e:any)=>{console.log(e);}
+  },
+  play: async ({ canvasElement, args }) => {
+    const switchElement = getSwitch(canvasElement);
+
+    await waitFor(() => {
+      expect(switchElement.value).toBe(false);
+      expect(getTrueText(switchElement).textContent).toBe(args.trueTitle);
+      expect(getFalseText(switchElement).textContent).toBe(args.falseTitle);
+    });
+
+    await userEvent.click(getSwitchWrapper(switchElement));
+    await waitForSwitchValue(switchElement, true);
+  }
+};
+
+export const EventTest: Story = {
+  render: () => <JBSwitch trueTitle="active" falseTitle="deactivate" required />,
+  play: async ({ canvasElement }) => {
+    const { switchElement, events } = await appendEventSwitch(canvasElement);
+
+    expect(switchElement.reportValidity()).toBe(false);
+
+    await userEvent.click(getSwitchWrapper(switchElement));
+
+    await waitFor(() => {
+      expect(switchElement.value).toBe(true);
+      expect(switchElement.reportValidity()).toBe(true);
+      expect(events).toEqual(expect.arrayContaining(['before-change', 'change']));
+    });
+
+    switchElement.value = false;
+    switchElement.addEventListener('before-change', (event) => event.preventDefault(), { once: true });
+
+    await userEvent.click(getSwitchWrapper(switchElement));
+
+    await waitFor(() => {
+      expect(switchElement.value).toBe(false);
+    });
+
+    switchElement.value = false;
+    switchElement.addEventListener('change', (event) => event.preventDefault(), { once: true });
+
+    await userEvent.click(getSwitchWrapper(switchElement));
+
+    await waitFor(() => {
+      expect(switchElement.value).toBe(false);
+      expect(getSwitchSvg(switchElement).classList.contains('--active')).toBe(false);
+    });
   }
 };
