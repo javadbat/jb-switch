@@ -25,6 +25,12 @@ import { JBSwitch } from 'jb-switch/react';
 <JBSwitch value={enabled} trueTitle="Active" falseTitle="Inactive" />;
 ```
 
+## When to use
+
+Use `JBSwitch` for a boolean setting that can be toggled on or off and should show both active and inactive labels.
+
+Use `JBCheckbox` when the UI represents agreement, selection, or a single boolean option in a form rather than an immediate setting.
+
 ## Props
 
 | prop | type | description |
@@ -59,6 +65,10 @@ const [enabled, setEnabled] = useState(false);
   onChange={(event) => setEnabled(event.target.value)}
 />;
 ```
+
+## Value
+
+`value` is a boolean. Read `event.target.value` in `onBeforeChange` for the next value and in `onChange` for the committed value.
 
 ## Loading state
 
@@ -113,6 +123,14 @@ The React component uses the same CSS variables and parts as the web component.
 ```jsx
 <JBSwitch className="feature-switch" value={enabled} />
 ```
+
+## CSS parts and variables
+
+Use the same CSS parts and variables as the web component. The `Styling` section above shows the React class-based pattern.
+
+## Accessibility notes
+
+Use clear `trueTitle` and `falseTitle` text so the current state is understandable. Set `disabled` while a save operation is in progress if the setting should not be toggled repeatedly.
 
 ## Shared Documentation
 
