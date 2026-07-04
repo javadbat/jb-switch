@@ -3,8 +3,9 @@ import type { ReactComponentBuildConfig, WebComponentBuildConfig } from "../../t
 export const webComponentList: WebComponentBuildConfig[] = [
   {
     name: "jb-switch",
-    path: "./lib/jb-switch.ts",
-    outputPath: "./dist/jb-switch.js",
+    path: "./web-component/lib/jb-switch.ts",
+    outputPath: "./web-component/dist/jb-switch.js",
+    tsConfigPath: "./web-component/tsconfig.json",
     external: ['jb-validation', 'jb-form', 'jb-core', 'jb-core/theme', "jb-core/i18n"],
     globals: {
       'jb-validation': "JBValidation",
