@@ -68,6 +68,11 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
     return this.getAttribute('name') || '';
   }
   initialValue = false;
+  formResetCallback() {
+    this.value = this.initialValue;
+    this.#validation.reset();
+    this.#internals?.setValidity({}, '');
+  }
   get isDirty(): boolean{
     return this.#value !== this.initialValue;
   }
@@ -258,10 +263,12 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
     return [];
   }
   showValidationError(params: ShowValidationErrorParameters) {
-    //TODO: implement it
+    this.#internals?.states?.add("invalid");
+    if (this.#internals) this.#internals.ariaInvalid = "true";
   }
   clearValidationError() {
-    //TODO: implement it
+    this.#internals?.states?.delete("invalid");
+    if (this.#internals) this.#internals.ariaInvalid = "false";
   }
   get validationMessage(){
     return this.#internals?.validationMessage??"";

@@ -2,8 +2,13 @@
 
 ## Unreleased
 
+### Added
+
+- Added the standard `formResetCallback()` to restore `initialValue` and clear validation state.
+
 ### Changed
 
+- Standardized `invalid` custom-state and `ariaInvalid` updates in validation display and cleanup callbacks.
 - Added the React `initialValue` prop and forwarded `value` and `initialValue` directly as React 19 custom-element properties.
 - Standardized all custom theme recipes on `jb-switch.<theme>-style`, public parts, and custom-state selectors.
 
