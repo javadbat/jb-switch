@@ -107,6 +107,11 @@ export const Gallery: Story = {
   ),
 };
 
+export const Default: Story = {
+  name: "Default",
+  render: () => <SwitchStyleSample className="" />,
+};
+
 export const Carbon: Story = {
   name: "Carbon",
   render: () => <SwitchStyleSample className="carbon-style carbon-style" />,
