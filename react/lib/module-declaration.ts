@@ -11,6 +11,8 @@ declare module "react" {
       name?: string,
       "true-title"?: string,
       "false-title"?: string,
+      value?: boolean,
+      initialValue?: boolean,
     }
   }
 }

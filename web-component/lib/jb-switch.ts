@@ -137,7 +137,9 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
     this.elements.componentWrapper.addEventListener('click', () => this.#onComponentClick());
   }
   initProp() {
-    this.value = this.getAttribute('value') === "true";
+    if (this.hasAttribute('value')) {
+      this.value = this.getAttribute('value') === "true";
+    }
     this.required = this.getAttribute('required') === "" || this.getAttribute('required') === "true";
     this.disabled = this.getAttribute('disabled') === "" || this.getAttribute('disabled') === "true";
     this.isLoading = this.getAttribute('loading') === "" || this.getAttribute('loading') === "true";
