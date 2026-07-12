@@ -1,0 +1,17 @@
+jb-switch.bootstrap-style {
+    --jb-switch-bg-color: var(--jb-border-color);
+    --jb-switch-bg-color-active: var(--jb-focus-color);
+    --jb-switch-ring-color: var(--jb-surface);
+    --jb-switch-ring-color-active: var(--jb-surface);
+    --jb-switch-trigger-bg-color: var(--jb-surface);
+    --jb-switch-trigger-bg-color-active: var(--jb-surface);
+    --jb-switch-caption-color: var(--jb-text-secondary);
+    --jb-switch-caption-color-active: var(--jb-text-primary);
+    --jb-switch-bar-border-color: var(--jb-text-disabled);
+    --jb-switch-bar-stroke-width: 8px;
+    --jb-switch-focus-ring-color: rgb(13 110 253 / 0.45);
+}
+
+jb-switch.bootstrap-style::part(bar) {
+    stroke-linejoin: round;
+}

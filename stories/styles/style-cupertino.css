@@ -1,0 +1,17 @@
+jb-switch.cupertino-style {
+    --jb-switch-width: 4.75rem;
+    --jb-switch-height: 2.875rem;
+    --jb-switch-bg-color: #e9e9eb;
+    --jb-switch-bg-color-active: #34c759;
+    --jb-switch-ring-color: var(--jb-text-contrast);
+    --jb-switch-ring-color-active: var(--jb-text-contrast);
+    --jb-switch-trigger-bg-color: var(--jb-text-contrast);
+    --jb-switch-trigger-bg-color-active: var(--jb-text-contrast);
+    --jb-switch-caption-color: #6e6e73;
+    --jb-switch-caption-color-active: var(--jb-text-primary);
+    --jb-switch-focus-ring-color: var(--jb-focus-color);
+}
+
+jb-switch.cupertino-style::part(trigger) {
+    filter: drop-shadow(0 0.18rem 0.35rem rgb(0 0 0 / 0.22));
+}

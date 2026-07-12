@@ -1,0 +1,16 @@
+jb-switch.forest-style {
+    --jb-switch-bg-color: #31533f;
+    --jb-switch-bg-color-active: #f6d95f;
+    --jb-switch-ring-color: #f6d95f;
+    --jb-switch-ring-color-active: #173f2e;
+    --jb-switch-trigger-bg-color: #173f2e;
+    --jb-switch-trigger-bg-color-active: #fff8d2;
+    --jb-switch-caption-color: #d9eadb;
+    --jb-switch-caption-color-active: #ffffff;
+    --jb-switch-bar-border-color: #6f8f69;
+    --jb-switch-bar-stroke-width: 12px;
+}
+
+jb-switch.forest-style::part(trigger) {
+    filter: drop-shadow(0 0.25rem 0.3rem rgb(0 0 0 / 0.35));
+}

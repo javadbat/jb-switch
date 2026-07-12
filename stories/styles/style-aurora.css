@@ -1,0 +1,17 @@
+jb-switch.aurora-style {
+    --jb-switch-width: 5rem;
+    --jb-switch-height: 3rem;
+    --jb-switch-bg-color: #20314d;
+    --jb-switch-bg-color-active: #235e6d;
+    --jb-switch-ring-color: #d9f4ff;
+    --jb-switch-ring-color-active: #ffffff;
+    --jb-switch-trigger-bg-color: #7b61ff;
+    --jb-switch-trigger-bg-color-active: #2dd4bf;
+    --jb-switch-caption-color: #dbeafe;
+    --jb-switch-caption-color-active: #ffffff;
+    --jb-switch-focus-ring-color: #93c5fd;
+}
+
+jb-switch.aurora-style::part(switch) {
+    filter: drop-shadow(0 0.4rem 0.9rem rgb(45 212 191 / 0.28));
+}

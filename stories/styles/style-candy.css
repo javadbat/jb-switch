@@ -1,0 +1,18 @@
+jb-switch.candy-style {
+    --jb-switch-width: 5.25rem;
+    --jb-switch-height: 3rem;
+    --jb-switch-bg-color: #ffd6e8;
+    --jb-switch-bg-color-active: #a3195b;
+    --jb-switch-ring-color: #a3195b;
+    --jb-switch-ring-color-active: #fff5fb;
+    --jb-switch-trigger-bg-color: #fff5fb;
+    --jb-switch-trigger-bg-color-active: #ffd6e8;
+    --jb-switch-caption-color: #7a174a;
+    --jb-switch-caption-color-active: #a3195b;
+    --jb-switch-focus-ring-color: var(--jb-primary-hover);
+}
+
+jb-switch.candy-style::part(bar) {
+    stroke: #f9a8d4;
+    stroke-width: 14px;
+}

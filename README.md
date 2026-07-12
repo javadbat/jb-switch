@@ -156,22 +156,7 @@ switchEl.validation.list = [
 
 ## CSS parts and variables
 
-| part | description |
-| --- | --- |
-| `true-text` | True-side caption. |
-| `false-text` | False-side caption. |
-| `svg-wrapper` | Wrapper around the switch SVG. |
-| `switch` | The switch SVG. |
-| `bar` | Switch background bar. |
-| `trigger-button` | Movable trigger group. |
-| `trigger-ring` | Ring inside the trigger button. |
-
-| CSS variable name | description |
-| --- | --- |
-| `--jb-switch-bg-color-active` | Background color when value is true. |
-| `--jb-switch-bg-color` | Background color when value is false. |
-| `--jb-switch-ring-color` | Trigger ring color when value is false. |
-| `--jb-switch-ring-color-active` | Trigger ring color when value is true. |
+For complete styling guidance, live examples, official parts, custom states, and copyable style recipes, see [Styling](https://javadbat.github.io/design-system/?path=/docs/components-form-elements-jbswitch-styling).
 
 ```css
 jb-switch {

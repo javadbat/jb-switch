@@ -1,0 +1,15 @@
+jb-switch.sunset-style {
+    --jb-switch-bg-color: #7f304a;
+    --jb-switch-bg-color-active: var(--jb-focus-color);
+    --jb-switch-ring-color: var(--jb-focus-color);
+    --jb-switch-ring-color-active: #9a4160;
+    --jb-switch-trigger-bg-color: #9a4160;
+    --jb-switch-trigger-bg-color-active: #fff8ed;
+    --jb-switch-caption-color: #fff0f4;
+    --jb-switch-caption-color-active: #ffffff;
+    --jb-switch-transition: all 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+jb-switch.sunset-style::part(bar) {
+    stroke: rgb(255 209 102 / 0.55);
+}

@@ -1,6 +1,29 @@
-:host{
-  --ring-color-active:var(--jb-switch-ring-color-active, var(--jb-green));
-  --bg-color-active:var(--jb-switch-bg-color-active, var(--jb-green));
+:host {
+  /* size */
+  --width: var(--jb-switch-width, 4.4375rem);
+  --height: var(--jb-switch-height, 2.75rem);
+  --gap: var(--jb-switch-gap, 0.5rem);
+  --caption-font-size: var(--jb-switch-caption-font-size, 0.875rem);
+  --caption-font-weight: var(--jb-switch-caption-font-weight, 400);
+  --caption-font-weight-active: var(--jb-switch-caption-font-weight-active, 700);
+  --bar-stroke-width: var(--jb-switch-bar-stroke-width, 0);
+  --trigger-ring-stroke-width: var(--jb-switch-trigger-ring-stroke-width, 1.25rem);
+
+  /* theme/color */
+  --ring-color-active: var(--jb-switch-ring-color-active, var(--jb-green));
+  --bg-color-active: var(--jb-switch-bg-color-active, var(--jb-green));
   --bg-color: var(--jb-switch-bg-color, var(--jb-neutral-10));
-  --ring-color:var(--jb-switch-ring-color, var(--jb-primary));
+  --ring-color: var(--jb-switch-ring-color, var(--jb-primary));
+  --bar-border-color: var(--jb-switch-bar-border-color, transparent);
+  --trigger-bg-color: var(--jb-switch-trigger-bg-color, url(#color1));
+  --trigger-bg-color-active: var(--jb-switch-trigger-bg-color-active, var(--trigger-bg-color));
+  --caption-color: var(--jb-switch-caption-color, inherit);
+  --caption-color-active: var(--jb-switch-caption-color-active, var(--caption-color));
+  --focus-ring-color: var(--jb-switch-focus-ring-color, var(--jb-focus-color));
+
+  /* other */
+  --cursor: var(--jb-switch-cursor, pointer);
+  --opacity-disabled: var(--jb-switch-opacity-disabled, 0.55);
+  --transition: var(--jb-switch-transition, all 0.3s ease-in-out);
+  --loading-animation-duration: var(--jb-switch-loading-animation-duration, 1.5s);
 }

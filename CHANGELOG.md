@@ -1,8 +1,18 @@
 # changelog
 
+## Unreleased
+
+### Changed
+
+- Standardized all custom theme recipes on `jb-switch.<theme>-style`, public parts, and custom-state selectors.
+
 ## [] - 2026-03-11
 ### new features:
     - support react standard props
+    - add styling story and documentation with reusable style recipes.
+    - add `component` and `trigger` CSS parts.
+    - add `active`, `inactive`, `loading`, and `disabled` custom states.
+    - add public CSS variables for switch size, captions, trigger fill, bar border, focus, disabled, and motion styling.
 
 ## [1.6.0] - 2025-10-01
 ### new features:

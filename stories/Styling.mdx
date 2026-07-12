@@ -1,0 +1,271 @@
+import { Meta, Source, Story, Title } from '@storybook/addon-docs/blocks';
+import * as StyleStories from './Styles.stories';
+import antDesignThemeCss from '../../../docs/styles/ant-design.css?raw';
+import auroraThemeCss from '../../../docs/styles/aurora.css?raw';
+import bootstrapThemeCss from '../../../docs/styles/bootstrap.css?raw';
+import candyThemeCss from '../../../docs/styles/candy.css?raw';
+import carbonThemeCss from '../../../docs/styles/carbon.css?raw';
+import cupertinoThemeCss from '../../../docs/styles/cupertino.css?raw';
+import fluentThemeCss from '../../../docs/styles/fluent.css?raw';
+import forestThemeCss from '../../../docs/styles/forest.css?raw';
+import materialThemeCss from '../../../docs/styles/material.css?raw';
+import porcelainThemeCss from '../../../docs/styles/porcelain.css?raw';
+import sunsetThemeCss from '../../../docs/styles/sunset.css?raw';
+import terminalThemeCss from '../../../docs/styles/terminal.css?raw';
+import antDesignSwitchCss from './styles/style-ant-design.css?raw';
+import auroraSwitchCss from './styles/style-aurora.css?raw';
+import bootstrapSwitchCss from './styles/style-bootstrap.css?raw';
+import candySwitchCss from './styles/style-candy.css?raw';
+import carbonSwitchCss from './styles/style-carbon.css?raw';
+import cupertinoSwitchCss from './styles/style-cupertino.css?raw';
+import fluentSwitchCss from './styles/style-fluent.css?raw';
+import forestSwitchCss from './styles/style-forest.css?raw';
+import materialSwitchCss from './styles/style-material.css?raw';
+import porcelainSwitchCss from './styles/style-porcelain.css?raw';
+import sunsetSwitchCss from './styles/style-sunset.css?raw';
+import terminalSwitchCss from './styles/style-terminal.css?raw';
+
+<Meta title="Components/form elements/JBSwitch/Styling" />
+
+<Title>Styling</Title>
+
+`JBSwitch` styling is theme-driven. Use common design tokens for shared product language, component variables for the stable switch API, and CSS parts for official SVG surfaces such as the bar, trigger, and trigger ring.
+
+## Live Gallery
+
+<Story of={StyleStories.Gallery} />
+
+<Source of={StyleStories.Gallery} />
+
+## Common Design Tokens
+
+Use the core theme docs as the source of truth for shared design-system variables:
+
+- [Theme Colors](../../jb-core/theme/stories/colors.mdx) explains the general color palette variables, default colors, customization approaches, and color generation helpers.
+- [Theme Sizes](../../jb-core/theme/stories/sizes.mdx) explains shared size and radius variables.
+- [Theme Custom Galleries](https://javadbat.github.io/design-system/?path=/docs/theme-custom-material--docs) gathers the shared custom style recipes across components.
+
+Switch recipes should use those common tokens where possible, then map them into `--jb-switch-*` variables only where the switch needs a component-specific value.
+
+## Styling Model
+
+Use three layers when styling switch examples:
+
+- Common design tokens are documented in [Theme Colors](../../jb-core/theme/stories/colors.mdx) and [Theme Sizes](../../jb-core/theme/stories/sizes.mdx).
+- Reusable example theme packs live in [`docs/styles`](https://github.com/javadbat/design-system/tree/main/docs/styles) and can be shared across components.
+- Component recipe files live in [`modules/jb-switch/stories/styles`](https://github.com/javadbat/design-system/tree/main/modules/jb-switch/stories/styles).
+- Public component variables use the `--jb-switch-*` prefix and are the stable styling API.
+
+Each example uses one shared example theme pack from [`docs/styles`](https://github.com/javadbat/design-system/tree/main/docs/styles) and one switch-specific recipe from [`modules/jb-switch/stories/styles`](https://github.com/javadbat/design-system/tree/main/modules/jb-switch/stories/styles). The style story applies both classes directly to `JBSwitch`.
+
+## Recommended Customization Path
+
+1. Use `--jb-switch-*` variables first for switch internals.
+2. Use common theme variables from [Theme Colors](../../jb-core/theme/stories/colors.mdx) and [Theme Sizes](../../jb-core/theme/stories/sizes.mdx) when the style should align with the design system.
+3. Put reusable theme-pack values in [`docs/styles`](https://github.com/javadbat/design-system/tree/main/docs/styles) only when they should be shared by multiple component demos.
+4. Use `::part(...)` for official exposed SVG surfaces such as `::part(bar)`, `::part(trigger)`, and `::part(trigger-ring)`.
+5. Use custom states for state-specific styling, especially `:state(active)`, `:state(inactive)`, `:state(loading)`, and `:state(disabled)`.
+6. Add a new component variable only when a needed internal value cannot be expressed with the current public variables or official parts.
+
+## Parts And States
+
+<table>
+  <thead>
+    <tr>
+      <th>Part</th>
+      <th>Element</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>component</code></td><td>Root shadow wrapper</td><td>Use for layout and wrapper-level effects.</td></tr>
+    <tr><td><code>true-text</code></td><td>True-side caption</td><td>Use for caption color, weight, or spacing.</td></tr>
+    <tr><td><code>false-text</code></td><td>False-side caption</td><td>Use for caption color, weight, or spacing.</td></tr>
+    <tr><td><code>svg-wrapper</code></td><td>Wrapper around the switch SVG</td><td>Use for switch box effects around the SVG.</td></tr>
+    <tr><td><code>switch</code></td><td>Switch SVG</td><td>Use for whole switch SVG effects such as drop shadow.</td></tr>
+    <tr><td><code>bar</code></td><td>Switch background bar</td><td>Use for stroke and bar-specific emphasis.</td></tr>
+    <tr><td><code>trigger-button</code></td><td>Movable trigger group</td><td>Use for transforms or effects on the moving knob group.</td></tr>
+    <tr><td><code>trigger</code></td><td>Trigger fill circle</td><td>Use for knob fill effects.</td></tr>
+    <tr><td><code>trigger-ring</code></td><td>Ring inside the trigger button</td><td>Use for ring stroke and loading emphasis.</td></tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Custom State</th>
+      <th>Meaning</th>
+      <th>Example Selector</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>active</code></td><td>Applied when <code>value</code> is true.</td><td><code>jb-switch:state(active)::part(bar)</code></td></tr>
+    <tr><td><code>inactive</code></td><td>Applied when <code>value</code> is false.</td><td><code>jb-switch:state(inactive)::part(trigger-ring)</code></td></tr>
+    <tr><td><code>loading</code></td><td>Applied while the loading animation is active.</td><td><code>jb-switch:state(loading)::part(trigger-ring)</code></td></tr>
+    <tr><td><code>disabled</code></td><td>Applied when the switch is disabled.</td><td><code>jb-switch:state(disabled)::part(component)</code></td></tr>
+  </tbody>
+</table>
+
+## CSS Variables
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Category</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--jb-switch-width</code></td><td>Size</td><td>Switch SVG width.</td></tr>
+    <tr><td><code>--jb-switch-height</code></td><td>Size</td><td>Switch SVG height.</td></tr>
+    <tr><td><code>--jb-switch-gap</code></td><td>Size</td><td>Gap between captions and switch.</td></tr>
+    <tr><td><code>--jb-switch-caption-font-size</code></td><td>Size</td><td>Caption font size.</td></tr>
+    <tr><td><code>--jb-switch-caption-font-weight</code></td><td>Size</td><td>Default caption font weight.</td></tr>
+    <tr><td><code>--jb-switch-caption-font-weight-active</code></td><td>Size</td><td>Active caption font weight.</td></tr>
+    <tr><td><code>--jb-switch-bar-stroke-width</code></td><td>Size</td><td>Switch bar stroke width.</td></tr>
+    <tr><td><code>--jb-switch-trigger-ring-stroke-width</code></td><td>Size</td><td>Trigger ring stroke width.</td></tr>
+    <tr><td><code>--jb-switch-bg-color</code></td><td>Theme/Color</td><td>Background bar color when value is false.</td></tr>
+    <tr><td><code>--jb-switch-bg-color-active</code></td><td>Theme/Color</td><td>Background bar color when value is true.</td></tr>
+    <tr><td><code>--jb-switch-ring-color</code></td><td>Theme/Color</td><td>Trigger ring color when value is false.</td></tr>
+    <tr><td><code>--jb-switch-ring-color-active</code></td><td>Theme/Color</td><td>Trigger ring color when value is true.</td></tr>
+    <tr><td><code>--jb-switch-bar-border-color</code></td><td>Theme/Color</td><td>Switch bar stroke color.</td></tr>
+    <tr><td><code>--jb-switch-trigger-bg-color</code></td><td>Theme/Color</td><td>Trigger fill color when value is false.</td></tr>
+    <tr><td><code>--jb-switch-trigger-bg-color-active</code></td><td>Theme/Color</td><td>Trigger fill color when value is true.</td></tr>
+    <tr><td><code>--jb-switch-caption-color</code></td><td>Theme/Color</td><td>Default caption color.</td></tr>
+    <tr><td><code>--jb-switch-caption-color-active</code></td><td>Theme/Color</td><td>Active caption color.</td></tr>
+    <tr><td><code>--jb-switch-focus-ring-color</code></td><td>Theme/Color</td><td>Host focus outline color.</td></tr>
+    <tr><td><code>--jb-switch-cursor</code></td><td>Other</td><td>Root wrapper cursor.</td></tr>
+    <tr><td><code>--jb-switch-opacity-disabled</code></td><td>Other</td><td>Disabled opacity.</td></tr>
+    <tr><td><code>--jb-switch-transition</code></td><td>Other</td><td>Switch motion transition.</td></tr>
+    <tr><td><code>--jb-switch-loading-animation-duration</code></td><td>Other</td><td>Loading ring animation duration.</td></tr>
+  </tbody>
+</table>
+
+## Style Recipes
+
+### Carbon
+
+<Story of={StyleStories.Carbon} />
+<Source of={StyleStories.Carbon} />
+Shared style:
+<Source code={carbonThemeCss} language="css" />
+Switch style:
+<Source code={carbonSwitchCss} language="css" />
+
+### Aurora
+
+<Story of={StyleStories.Aurora} />
+<Source of={StyleStories.Aurora} />
+Shared style:
+<Source code={auroraThemeCss} language="css" />
+Switch style:
+<Source code={auroraSwitchCss} language="css" />
+
+### Forest
+
+<Story of={StyleStories.Forest} />
+<Source of={StyleStories.Forest} />
+Shared style:
+<Source code={forestThemeCss} language="css" />
+Switch style:
+<Source code={forestSwitchCss} language="css" />
+
+### Sunset
+
+<Story of={StyleStories.Sunset} />
+<Source of={StyleStories.Sunset} />
+Shared style:
+<Source code={sunsetThemeCss} language="css" />
+Switch style:
+<Source code={sunsetSwitchCss} language="css" />
+
+### Porcelain
+
+<Story of={StyleStories.Porcelain} />
+<Source of={StyleStories.Porcelain} />
+Shared style:
+<Source code={porcelainThemeCss} language="css" />
+Switch style:
+<Source code={porcelainSwitchCss} language="css" />
+
+### Candy
+
+<Story of={StyleStories.Candy} />
+<Source of={StyleStories.Candy} />
+Shared style:
+<Source code={candyThemeCss} language="css" />
+Switch style:
+<Source code={candySwitchCss} language="css" />
+
+### Terminal
+
+<Story of={StyleStories.Terminal} />
+<Source of={StyleStories.Terminal} />
+Shared style:
+<Source code={terminalThemeCss} language="css" />
+Switch style:
+<Source code={terminalSwitchCss} language="css" />
+
+### Material
+
+<Story of={StyleStories.Material} />
+<Source of={StyleStories.Material} />
+Shared style:
+<Source code={materialThemeCss} language="css" />
+Switch style:
+<Source code={materialSwitchCss} language="css" />
+
+### Fluent
+
+<Story of={StyleStories.Fluent} />
+<Source of={StyleStories.Fluent} />
+Shared style:
+<Source code={fluentThemeCss} language="css" />
+Switch style:
+<Source code={fluentSwitchCss} language="css" />
+
+### Bootstrap
+
+<Story of={StyleStories.Bootstrap} />
+<Source of={StyleStories.Bootstrap} />
+Shared style:
+<Source code={bootstrapThemeCss} language="css" />
+Switch style:
+<Source code={bootstrapSwitchCss} language="css" />
+
+### Cupertino
+
+<Story of={StyleStories.Cupertino} />
+<Source of={StyleStories.Cupertino} />
+Shared style:
+<Source code={cupertinoThemeCss} language="css" />
+Switch style:
+<Source code={cupertinoSwitchCss} language="css" />
+
+### Ant Design
+
+<Story of={StyleStories.AntDesign} />
+<Source of={StyleStories.AntDesign} />
+Shared style:
+<Source code={antDesignThemeCss} language="css" />
+Switch style:
+<Source code={antDesignSwitchCss} language="css" />
+
+## Theme File Pattern
+
+Use [Theme Colors](../../jb-core/theme/stories/colors.mdx) and [Theme Sizes](../../jb-core/theme/stories/sizes.mdx) as the common design-token guides. Theme-pack files should keep reusable demo variables in [`docs/styles`](https://github.com/javadbat/design-system/tree/main/docs/styles), then each component should keep its own style CSS in its story [`styles`](https://github.com/javadbat/design-system/tree/main/modules/jb-switch/stories/styles) folder.
+
+```css
+/* https://github.com/javadbat/design-system/blob/main/docs/styles/carbon.css */
+.theme-name-style {
+  /* shared design-system variables */
+}
+
+/* https://github.com/javadbat/design-system/blob/main/modules/jb-switch/stories/styles/style-carbon.css */
+.theme-name-switch {
+  /* switch-specific variables and official parts */
+}
+```
+
+This keeps common theme tokens reusable and lets each component page show only the CSS it needs.

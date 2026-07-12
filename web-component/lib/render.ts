@@ -1,6 +1,6 @@
 export function renderHTML(): string {
   return /* html */ `
-  <div class="jb-switch-web-component">
+  <div class="jb-switch-web-component" part="component">
     <div class="caption true-text" part="true-text"></div>
     <div class="svg-wrapper" part="svg-wrapper">
         <svg class="switch-svg" part="switch" viewBox=" 0 0 710 440">
@@ -24,7 +24,7 @@ export function renderHTML(): string {
             </defs>
             <rect class="bg-bar" part="bar" x="20" y="40" height="360" width="680" stroke="red" rx="180" stroke-width="0" />
             <g class="trigger-button" part="trigger-button">
-                <circle class="trigger-circle" fill="url(#color1)" cx="220" cy="220" r="200"
+                <circle class="trigger-circle" part="trigger" fill="url(#color1)" cx="220" cy="220" r="200"
                 filter="url(#drop-shadow)" />
             <circle class="trigger-circle-bar" part="trigger-ring" cx=" 220" cy="220" r="120"
                 filter="url(#drop-shadow)" />

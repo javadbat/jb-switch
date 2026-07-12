@@ -1,0 +1,17 @@
+jb-switch.terminal-style {
+    --jb-switch-bg-color: #001d12;
+    --jb-switch-bg-color-active: #00ff8a;
+    --jb-switch-ring-color: #00ff8a;
+    --jb-switch-ring-color-active: #001d12;
+    --jb-switch-trigger-bg-color: #020617;
+    --jb-switch-trigger-bg-color-active: #eafff5;
+    --jb-switch-caption-color: #7dffb2;
+    --jb-switch-caption-color-active: #d6ffe8;
+    --jb-switch-caption-font-weight-active: 800;
+    --jb-switch-focus-ring-color: #00ff8a;
+    --jb-switch-loading-animation-duration: 0.9s;
+}
+
+jb-switch.terminal-style::part(switch) {
+    filter: drop-shadow(0 0 0.45rem rgb(0 255 138 / 0.32));
+}

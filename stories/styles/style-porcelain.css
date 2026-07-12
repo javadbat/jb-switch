@@ -1,0 +1,16 @@
+jb-switch.porcelain-style {
+    --jb-switch-bg-color: #eaf2fb;
+    --jb-switch-bg-color-active: #2f65a7;
+    --jb-switch-ring-color: #2f65a7;
+    --jb-switch-ring-color-active: var(--jb-surface);
+    --jb-switch-trigger-bg-color: var(--jb-surface);
+    --jb-switch-trigger-bg-color-active: var(--jb-surface);
+    --jb-switch-caption-color: #47617d;
+    --jb-switch-caption-color-active: #1f3d63;
+    --jb-switch-bar-border-color: #c9ddf2;
+    --jb-switch-bar-stroke-width: 10px;
+}
+
+jb-switch.porcelain-style::part(switch) {
+    filter: drop-shadow(0 0.4rem 0.9rem rgb(47 101 167 / 0.14));
+}

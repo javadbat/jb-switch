@@ -46,6 +46,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
   }
   set isLoading(value: boolean) {
     this.#isLoading = Boolean(value);
+    this.#setState("loading", this.#isLoading);
     if (this.#isLoading) {
       this.elements.triggerCircleBar.classList.add('--loading');
     } else {
@@ -84,12 +85,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
   }
   set disabled(value:boolean){
     this.#disabled = Boolean(value);
-    if(this.#disabled){
-      //TODO: remove as any when typescript support
-      (this.#internals as any)?.states?.add("disabled");
-    }else{
-      (this.#internals as any)?.states?.delete("disabled");
-    }
+    this.#setState("disabled", this.#disabled);
   }
   constructor() {
     super();
@@ -211,6 +207,8 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
     //public method
   }
   #updateDomForValueChange() {
+    this.#setState("active", this.value);
+    this.#setState("inactive", !this.value);
     if (this.value) {
       this.elements.falseText.classList.remove("--active");
       this.elements.trueText.classList.add("--active");
@@ -221,6 +219,14 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
       this.elements.switch.classList.remove('--active');
     }
 
+  }
+  #setState(state: string, isActive: boolean) {
+    const states = (this.#internals as any)?.states;
+    if (isActive) {
+      states?.add(state);
+    } else {
+      states?.delete(state);
+    }
   }
   /**
 * @description this method called on every checkValidity calls and update validation result of #internal

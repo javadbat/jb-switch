@@ -193,6 +193,10 @@
           ],
           "cssParts": [
             {
+              "name": "component",
+              "description": "Root shadow wrapper."
+            },
+            {
               "name": "true-text",
               "description": "True-side caption."
             },
@@ -217,11 +221,65 @@
               "description": "Movable trigger group."
             },
             {
+              "name": "trigger",
+              "description": "Trigger fill circle."
+            },
+            {
               "name": "trigger-ring",
               "description": "Ring inside the trigger button."
             }
           ],
+          "cssStates": [
+            {
+              "name": "active",
+              "description": "Applied when value is true."
+            },
+            {
+              "name": "inactive",
+              "description": "Applied when value is false."
+            },
+            {
+              "name": "loading",
+              "description": "Applied while the loading animation is active."
+            },
+            {
+              "name": "disabled",
+              "description": "Applied when the switch is disabled."
+            }
+          ],
           "cssProperties": [
+            {
+              "name": "--jb-switch-width",
+              "description": "Switch SVG width."
+            },
+            {
+              "name": "--jb-switch-height",
+              "description": "Switch SVG height."
+            },
+            {
+              "name": "--jb-switch-gap",
+              "description": "Gap between captions and switch."
+            },
+            {
+              "name": "--jb-switch-caption-font-size",
+              "description": "Caption font size."
+            },
+            {
+              "name": "--jb-switch-caption-font-weight",
+              "description": "Default caption font weight."
+            },
+            {
+              "name": "--jb-switch-caption-font-weight-active",
+              "description": "Active caption font weight."
+            },
+            {
+              "name": "--jb-switch-bar-stroke-width",
+              "description": "Switch bar stroke width."
+            },
+            {
+              "name": "--jb-switch-trigger-ring-stroke-width",
+              "description": "Trigger ring stroke width."
+            },
             {
               "name": "--jb-switch-bg-color-active",
               "description": "Background color when value is true."
@@ -237,6 +295,46 @@
             {
               "name": "--jb-switch-ring-color-active",
               "description": "Trigger ring color when value is true."
+            },
+            {
+              "name": "--jb-switch-bar-border-color",
+              "description": "Switch bar stroke color."
+            },
+            {
+              "name": "--jb-switch-trigger-bg-color",
+              "description": "Trigger fill color when value is false."
+            },
+            {
+              "name": "--jb-switch-trigger-bg-color-active",
+              "description": "Trigger fill color when value is true."
+            },
+            {
+              "name": "--jb-switch-caption-color",
+              "description": "Default caption color."
+            },
+            {
+              "name": "--jb-switch-caption-color-active",
+              "description": "Active caption color."
+            },
+            {
+              "name": "--jb-switch-focus-ring-color",
+              "description": "Host focus outline color."
+            },
+            {
+              "name": "--jb-switch-cursor",
+              "description": "Root wrapper cursor."
+            },
+            {
+              "name": "--jb-switch-opacity-disabled",
+              "description": "Disabled opacity."
+            },
+            {
+              "name": "--jb-switch-transition",
+              "description": "Switch motion transition."
+            },
+            {
+              "name": "--jb-switch-loading-animation-duration",
+              "description": "Loading ring animation duration."
             }
           ]
         }

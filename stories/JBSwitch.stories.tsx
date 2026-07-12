@@ -2,7 +2,7 @@ import React from 'react';
 import {JBSwitch} from 'jb-switch/react';
 import JBSwitchTest from './samples/JBSwitchTestPage';
 import JBSwitchIsLoadingTest from './samples/JBSwitchIsLoadingTestPage';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, userEvent, waitFor } from 'storybook/test';
 import {
   appendEventSwitch,
