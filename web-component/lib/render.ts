@@ -3,7 +3,7 @@ export function renderHTML(): string {
   <div class="jb-switch-web-component" part="component">
     <div class="caption true-text" part="true-text"></div>
     <div class="svg-wrapper" part="svg-wrapper">
-        <svg class="switch-svg" part="switch" viewBox=" 0 0 710 440">
+        <svg class="switch-svg" part="switch" viewBox=" 0 0 710 440" aria-hidden="true">
             <defs>
                 <filter xmlns="http://www.w3.org/2000/svg" id="drop-shadow" height="150%">
                     <feGaussianBlur in="SourceAlpha" stdDeviation="7"></feGaussianBlur>

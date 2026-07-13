@@ -1,6 +1,7 @@
 import {JBDictionary} from 'jb-core/i18n';
 export type JBSwitchDictionary = {
   requireMessage:string,
+  switchLabel:string,
 }
 
 /**
@@ -17,8 +18,10 @@ export type JBSwitchDictionary = {
 export const dictionary = new JBDictionary<JBSwitchDictionary>({
   "fa":{
     requireMessage:"سوییچ میبایست فعال شود",
+    switchLabel:"کلید",
   },
   "en":{
     requireMessage:"Switch is required",
+    switchLabel:"Switch",
   }
 });

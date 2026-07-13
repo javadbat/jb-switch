@@ -30,6 +30,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
       this.#value = booleanValue;
     }
     this.#updateDomForValueChange();
+    if (this.#internals) this.#internals.ariaChecked = this.#value ? "true" : "false";
     this.#setFormValue();
   }
   #setFormValue() {
@@ -47,6 +48,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
   set isLoading(value: boolean) {
     this.#isLoading = Boolean(value);
     this.#setState("loading", this.#isLoading);
+    if (this.#internals) this.#internals.ariaBusy = this.#isLoading ? "true" : "false";
     if (this.#isLoading) {
       this.elements.triggerCircleBar.classList.add('--loading');
     } else {
@@ -79,6 +81,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
   #required = false;
   set required(value:boolean){
     this.#required = Boolean(value);
+    if (this.#internals) this.#internals.ariaRequired = this.#required ? "true" : "false";
     this.#validation.checkValiditySync({showError:false});
   }
   get required() {
@@ -91,6 +94,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
   set disabled(value:boolean){
     this.#disabled = Boolean(value);
     this.#setState("disabled", this.#disabled);
+    if (this.#internals) this.#internals.ariaDisabled = this.#disabled ? "true" : "false";
   }
   constructor() {
     super();
@@ -98,6 +102,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
       //some browser don't support attachInternals
       this.#internals = this.attachInternals();
       this.#internals.role = "switch";
+      this.#internals.ariaLabel = dictionary.get(i18n, "switchLabel");
     }
     this.initWebComponent();
   }
@@ -150,7 +155,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
     this.isLoading = this.getAttribute('loading') === "" || this.getAttribute('loading') === "true";
   }
   static get observedAttributes(): string[] {
-    return ['true-title', "false-title", 'value', 'name', 'disabled', 'loading', 'required'];
+    return ['true-title', "false-title", 'value', 'name', 'disabled', 'loading', 'required', 'label'];
   }
   attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null): void {
     // do something when an attribute has changed
@@ -175,6 +180,9 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
         break;
       case 'required':
         this.required = value === "" || value === "true";
+        break;
+      case 'label':
+        if (this.#internals) this.#internals.ariaLabel = value ?? "";
         break;
 
     }
