@@ -1,9 +1,9 @@
 import {EventTypeWithTarget} from "jb-core";
 import { JBSwitchWebComponent } from "./jb-switch";
 export type ElementsObject = {
-    componentWrapper:HTMLDivElement,
-    trueText:HTMLDivElement,
-    falseText:HTMLDivElement,
+    componentWrapper:HTMLButtonElement,
+    trueText:HTMLSpanElement,
+    falseText:HTMLSpanElement,
     switch:SVGElement,
     triggerCircleBar:SVGCircleElement,
     triggerButton:SVGGElement

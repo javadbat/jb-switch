@@ -30,7 +30,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
       this.#value = booleanValue;
     }
     this.#updateDomForValueChange();
-    if (this.#internals) this.#internals.ariaChecked = this.#value ? "true" : "false";
+    this.elements.componentWrapper.setAttribute("aria-checked", this.#value ? "true" : "false");
     this.#setFormValue();
   }
   #setFormValue() {
@@ -48,7 +48,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
   set isLoading(value: boolean) {
     this.#isLoading = Boolean(value);
     this.#setState("loading", this.#isLoading);
-    if (this.#internals) this.#internals.ariaBusy = this.#isLoading ? "true" : "false";
+    this.elements.componentWrapper.setAttribute("aria-busy", this.#isLoading ? "true" : "false");
     if (this.#isLoading) {
       this.elements.triggerCircleBar.classList.add('--loading');
     } else {
@@ -81,7 +81,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
   #required = false;
   set required(value:boolean){
     this.#required = Boolean(value);
-    if (this.#internals) this.#internals.ariaRequired = this.#required ? "true" : "false";
+    this.elements.componentWrapper.setAttribute("aria-required", this.#required ? "true" : "false");
     this.#validation.checkValiditySync({showError:false});
   }
   get required() {
@@ -94,15 +94,13 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
   set disabled(value:boolean){
     this.#disabled = Boolean(value);
     this.#setState("disabled", this.#disabled);
-    if (this.#internals) this.#internals.ariaDisabled = this.#disabled ? "true" : "false";
+    this.elements.componentWrapper.disabled = this.#disabled;
   }
   constructor() {
     super();
     if (typeof this.attachInternals === "function") {
       //some browser don't support attachInternals
       this.#internals = this.attachInternals();
-      this.#internals.role = "switch";
-      this.#internals.ariaLabel = dictionary.get(i18n, "switchLabel");
     }
     this.initWebComponent();
   }
@@ -141,6 +139,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
       triggerCircleBar: shadowRoot.querySelector('.trigger-circle-bar')!,
       triggerButton: shadowRoot.querySelector('.trigger-button')!,
     };
+    this.elements.componentWrapper.setAttribute("aria-label", dictionary.get(i18n, "switchLabel"));
     this.registerEventListener();
   }
   registerEventListener(): void {
@@ -182,7 +181,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
         this.required = value === "" || value === "true";
         break;
       case 'label':
-        if (this.#internals) this.#internals.ariaLabel = value ?? "";
+        this.elements.componentWrapper.setAttribute("aria-label", value ?? "");
         break;
 
     }
@@ -219,7 +218,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
    */
   //TODO: find a way to manage focus and keyboard control
   focus() {
-    //public method
+    this.elements.componentWrapper.focus();
   }
   #updateDomForValueChange() {
     this.#setState("active", this.value);
@@ -272,11 +271,11 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
   }
   showValidationError(params: ShowValidationErrorParameters) {
     this.#internals?.states?.add("invalid");
-    if (this.#internals) this.#internals.ariaInvalid = "true";
+    this.elements.componentWrapper.setAttribute("aria-invalid", "true");
   }
   clearValidationError() {
     this.#internals?.states?.delete("invalid");
-    if (this.#internals) this.#internals.ariaInvalid = "false";
+    this.elements.componentWrapper.setAttribute("aria-invalid", "false");
   }
   get validationMessage(){
     return this.#internals?.validationMessage??"";

@@ -1,8 +1,8 @@
 export function renderHTML(): string {
   return /* html */ `
-  <div class="jb-switch-web-component" part="component">
-    <div class="caption true-text" part="true-text"></div>
-    <div class="svg-wrapper" part="svg-wrapper">
+  <button class="jb-switch-web-component" part="component" type="button" role="switch" aria-checked="false">
+    <span class="caption true-text" part="true-text"></span>
+    <span class="svg-wrapper" part="svg-wrapper">
         <svg class="switch-svg" part="switch" viewBox=" 0 0 710 440" aria-hidden="true">
             <defs>
                 <filter xmlns="http://www.w3.org/2000/svg" id="drop-shadow" height="150%">
@@ -31,8 +31,8 @@ export function renderHTML(): string {
             </g>
 
         </svg>
-    </div>
-    <div class="caption false-text" part="false-text"></div>
-    </div>
+    </span>
+    <span class="caption false-text" part="false-text"></span>
+  </button>
   `;
 }

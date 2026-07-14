@@ -8,6 +8,7 @@
 
 ### Changed
 
+- The interactive switch surface now uses a native button with switch semantics, forwarded ARIA state, native disabled behavior, and programmatic focus support.
 - Standardized `invalid` custom-state and `ariaInvalid` updates in validation display and cleanup callbacks.
 - Added the React `initialValue` prop and forwarded `value` and `initialValue` directly as React 19 custom-element properties.
 - Standardized all custom theme recipes on `jb-switch.<theme>-style`, public parts, and custom-state selectors.
