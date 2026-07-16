@@ -34,6 +34,17 @@
     "url": "https://github.com/javadbat/jb-switch"
   },
   "types": "./web-component/dist/jb-switch.d.ts",
+  "exports": {
+    ".": {
+      "types": "./web-component/dist/jb-switch.d.ts",
+      "default": "./index.js"
+    },
+    "./react": {
+      "types": "./react/dist/JBSwitch.d.ts",
+      "default": "./react/index.js"
+    },
+    "./*": "./*"
+  },
   "dependencies": {
     "jb-validation": ">=0.4.0",
     "jb-core":">=0.18.1"
