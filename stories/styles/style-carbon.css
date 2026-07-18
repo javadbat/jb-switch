@@ -1,13 +1,15 @@
 jb-switch.carbon-style {
+    --jb-switch-width: 3rem;
+    --jb-switch-height: 1.75rem;
     --jb-switch-bg-color: #333333;
-    --jb-switch-bg-color-active: #f5f5f5;
+    --jb-switch-bg-color-active: var(--jb-primary);
     --jb-switch-ring-color: #c8c8c8;
-    --jb-switch-ring-color-active: #111111;
+    --jb-switch-ring-color-active: var(--jb-text-contrast);
     --jb-switch-trigger-bg-color: #111111;
     --jb-switch-trigger-bg-color-active: var(--jb-text-contrast);
     --jb-switch-caption-color: #d8d8d8;
     --jb-switch-caption-color-active: var(--jb-text-contrast);
-    --jb-switch-focus-ring-color: var(--jb-text-contrast);
+    --jb-switch-focus-ring-color: var(--jb-focus-color);
 }
 
 jb-switch.carbon-style::part(bar) {
@@ -15,5 +17,5 @@ jb-switch.carbon-style::part(bar) {
 }
 
 jb-switch.carbon-style:state(active)::part(trigger-ring) {
-    stroke-width: 18px;
+    stroke-width: 10px;
 }

@@ -1,4 +1,6 @@
 jb-switch.fluent-style {
+    --jb-switch-width: 2.5rem;
+    --jb-switch-height: 1.25rem;
     --jb-switch-bg-color: var(--jb-background);
     --jb-switch-bg-color-active: var(--jb-focus-color);
     --jb-switch-ring-color: #605e5c;
@@ -10,6 +12,10 @@ jb-switch.fluent-style {
     --jb-switch-bar-border-color: #8a8886;
     --jb-switch-bar-stroke-width: 8px;
     --jb-switch-focus-ring-color: var(--jb-focus-color);
+}
+
+jb-switch.fluent-style::part(trigger-ring) {
+    stroke-width: 4px;
 }
 
 jb-switch.fluent-style:state(disabled)::part(true-text),

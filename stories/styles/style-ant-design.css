@@ -1,6 +1,6 @@
 jb-switch.ant-design-style {
-    --jb-switch-width: 4.5rem;
-    --jb-switch-height: 2.5rem;
+    --jb-switch-width: 2.75rem;
+    --jb-switch-height: 1.375rem;
     --jb-switch-bg-color: rgb(0 0 0 / 0.25);
     --jb-switch-bg-color-active: var(--jb-focus-color);
     --jb-switch-ring-color: var(--jb-surface);
@@ -9,10 +9,12 @@ jb-switch.ant-design-style {
     --jb-switch-trigger-bg-color-active: var(--jb-surface);
     --jb-switch-caption-color: rgb(0 0 0 / 0.65);
     --jb-switch-caption-color-active: rgb(0 0 0 / 0.88);
+    --jb-switch-caption-font-size: 0.875rem;
+    --jb-switch-caption-font-weight-active: 400;
     --jb-switch-focus-ring-color: #91caff;
-    --jb-switch-trigger-ring-stroke-width: 0.9rem;
+    --jb-switch-trigger-ring-stroke-width: 0.5rem;
 }
 
 jb-switch.ant-design-style::part(switch) {
-    filter: drop-shadow(0 0.125rem 0.25rem rgb(0 0 0 / 0.12));
+    filter: drop-shadow(0 0.0625rem 0.125rem rgb(0 0 0 / 0.2));
 }

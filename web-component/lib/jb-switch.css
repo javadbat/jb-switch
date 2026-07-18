@@ -31,6 +31,16 @@
         font-weight: var(--caption-font-weight);
         transition: var(--transition);
 
+        /* Reserve the active font width so changing weight does not move the switch. */
+        &::before {
+            display: block;
+            height: 0;
+            overflow: hidden;
+            visibility: hidden;
+            content: attr(data-text);
+            font-weight: var(--caption-font-weight-active);
+        }
+
         &.--active {
             color: var(--caption-color-active);
             font-weight: var(--caption-font-weight-active);

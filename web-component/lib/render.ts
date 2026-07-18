@@ -1,7 +1,7 @@
 export function renderHTML(): string {
   return /* html */ `
   <button class="jb-switch-web-component" part="component" type="button" role="switch" aria-checked="false">
-    <span class="caption true-text" part="true-text"></span>
+    <span class="caption true-text" part="true-text" data-text=""></span>
     <span class="svg-wrapper" part="svg-wrapper">
         <svg class="switch-svg" part="switch" viewBox=" 0 0 710 440" aria-hidden="true">
             <defs>
@@ -32,7 +32,7 @@ export function renderHTML(): string {
 
         </svg>
     </span>
-    <span class="caption false-text" part="false-text"></span>
+    <span class="caption false-text" part="false-text" data-text=""></span>
   </button>
   `;
 }

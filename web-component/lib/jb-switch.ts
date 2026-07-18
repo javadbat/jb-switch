@@ -166,10 +166,10 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
         this.value = value === "true";
         break;
       case 'true-title':
-        this.elements.trueText.innerText = value ?? "";
+        this.#setCaptionText(this.elements.trueText, value);
         break;
       case 'false-title':
-        this.elements.falseText.innerText = value ?? "";
+        this.#setCaptionText(this.elements.falseText, value);
         break;
       case 'disabled':
         this.disabled = value === "" || value === "true";
@@ -186,6 +186,11 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
 
     }
 
+  }
+  #setCaptionText(element: HTMLSpanElement, value: string | null): void {
+    const text = value ?? "";
+    element.innerText = text;
+    element.dataset.text = text;
   }
   #onComponentClick(): void {
     if (this.#disabled) {

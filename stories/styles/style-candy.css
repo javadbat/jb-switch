@@ -1,6 +1,6 @@
 jb-switch.candy-style {
-    --jb-switch-width: 5.25rem;
-    --jb-switch-height: 3rem;
+    --jb-switch-width: 3.5rem;
+    --jb-switch-height: 2rem;
     --jb-switch-bg-color: #ffd6e8;
     --jb-switch-bg-color-active: #a3195b;
     --jb-switch-ring-color: #a3195b;
@@ -9,10 +9,12 @@ jb-switch.candy-style {
     --jb-switch-trigger-bg-color-active: #ffd6e8;
     --jb-switch-caption-color: #7a174a;
     --jb-switch-caption-color-active: #a3195b;
+    --jb-switch-caption-font-size: 0.875rem;
+    --jb-switch-trigger-ring-stroke-width: 0.625rem;
     --jb-switch-focus-ring-color: var(--jb-primary-hover);
 }
 
 jb-switch.candy-style::part(bar) {
     stroke: #f9a8d4;
-    stroke-width: 14px;
+    stroke-width: 8px;
 }
