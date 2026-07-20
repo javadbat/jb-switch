@@ -1,9 +1,14 @@
 # changelog
 
-## Unreleased
+## [1.7.0] - 2026-07-19
 
 ### Added
 
+- support react standard props
+- add styling story and documentation with reusable style recipes.
+- add `component` and `trigger` CSS parts.
+- add `active`, `inactive`, `loading`, and `disabled` custom states.
+- add public CSS variables for switch size, captions, trigger fill, bar border, focus, disabled, and motion styling.
 - Added the standard `formResetCallback()` to restore `initialValue` and clear validation state.
 
 ### Changed
@@ -17,13 +22,6 @@
 
 - Preserved property-assigned values during connection when no `value` attribute is present.
 
-## [] - 2026-03-11
-### new features:
-    - support react standard props
-    - add styling story and documentation with reusable style recipes.
-    - add `component` and `trigger` CSS parts.
-    - add `active`, `inactive`, `loading`, and `disabled` custom states.
-    - add public CSS variables for switch size, captions, trigger fill, bar border, focus, disabled, and motion styling.
 
 ## [1.6.0] - 2025-10-01
 ### new features:
