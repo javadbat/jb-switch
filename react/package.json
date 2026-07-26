@@ -32,6 +32,6 @@
 		"url": "git@github.com:javadbat/jb-switch.git"
   },
   "dependencies": {
-    "jb-switch": ">=1.2.1"
+    "jb-switch": "^1.2.1"
   }
 }
