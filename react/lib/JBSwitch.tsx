@@ -26,11 +26,12 @@ export const JBSwitch = React.forwardRef((props: Props, ref) => {
   );
 
   const { disabled, falseTitle, initialValue, isLoading, required, trueTitle, validationList, value, onBeforeChange, onChange, onInit, onLoad, ...otherProps } = props
+  const valueProps = value === undefined ? {} : { value: value ?? false };
   useJBSwitchAttribute(element, { disabled, falseTitle, isLoading, required, trueTitle, validationList })
   useEvents(element, { onBeforeChange, onChange, onInit, onLoad });
 
   return (
-    <jb-switch ref={element} value={value ?? false} initialValue={initialValue ?? false} {...otherProps}>
+    <jb-switch ref={element} initialValue={initialValue ?? false} {...valueProps} {...otherProps}>
     </jb-switch>
   );
 });

@@ -69,6 +69,7 @@ import 'jb-switch';
 | `validation` | `ValidationHelper<boolean>` | yes | Validation helper from `jb-validation`; set `validation.list` for custom rules. |
 | `form` | `HTMLFormElement \| null` | yes | Associated form from `ElementInternals`. |
 | `name` | `string` | yes | Form field name from the `name` attribute. |
+| `initialValue` | `boolean` | no | Default and reset value. It initializes `value` until the live value is explicitly set. |
 | `isDirty` | `boolean` | yes | `true` when current value differs from `initialValue`. |
 | `validationMessage` | `string` | yes | Current validation message from `ElementInternals`. |
 
