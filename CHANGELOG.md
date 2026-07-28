@@ -10,6 +10,7 @@
 
 - Added `initialValue` as the default and reset state; it seeds `value` only until the live value is explicitly set.
 - Updated the React wrapper so an omitted `value` does not overwrite `initialValue`, while explicit `null` still clears the live state.
+- add `stateType:"valueMissing"` to error of required check.
 
 ## [1.7.0] - 2026-07-19
 

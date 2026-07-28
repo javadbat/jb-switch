@@ -1,8 +1,8 @@
 import CSS from './jb-switch.css';
 import VariablesCSS from './variables.css';
-import { ValidationHelper, ValidationItem, ValidationResult, type WithValidation, type ShowValidationErrorParameters } from 'jb-validation';
-import { type JBFormInputStandards } from 'jb-form';
-import { ElementsObject, ValidationValue } from './types.js';
+import { ValidationHelper, type ValidationItem, type ValidationResult, type WithValidation, type ShowValidationErrorParameters } from 'jb-validation';
+import type { JBFormInputStandards } from 'jb-form';
+import type { ElementsObject, ValidationValue } from './types.js';
 import {registerDefaultVariables} from 'jb-core/theme';
 import { renderHTML } from './render';
 import { dictionary } from './i18n';
@@ -174,7 +174,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
   static get observedAttributes(): string[] {
     return ['true-title', "false-title", 'value', 'name', 'disabled', 'loading', 'required', 'label'];
   }
-  attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null): void {
+  attributeChangedCallback(name: string, _oldValue: string | null, newValue: string | null): void {
     // do something when an attribute has changed
     this.onAttributeChange(name, newValue);
   }
@@ -261,7 +261,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
 
   }
   #setState(state: string, isActive: boolean) {
-    const states = (this.#internals as any)?.states;
+    const states = this.#internals?.states;
     if (isActive) {
       states?.add(state);
     } else {
@@ -290,7 +290,8 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
     if(this.#required){
       return [{
         validator:(value)=>value!==false,
-        message:dictionary.get(i18n,'requireMessage')
+        message:dictionary.get(i18n,'requireMessage'),
+        stateType:"valueMissing"
       }];
     }
     return [];
