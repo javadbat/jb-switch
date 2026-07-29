@@ -93,6 +93,9 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
     this.#validation.reset();
     this.#internals?.setValidity({}, '');
   }
+  formDisabledCallback(disabled: boolean) {
+    this.disabled = disabled;
+  }
   get isDirty(): boolean{
     return this.#value !== this.initialValue;
   }
