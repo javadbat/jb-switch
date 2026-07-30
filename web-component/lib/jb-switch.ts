@@ -3,7 +3,7 @@ import VariablesCSS from './variables.css';
 import { ValidationHelper, type ValidationItem, type ValidationResult, type WithValidation, type ShowValidationErrorParameters } from 'jb-validation';
 import type { JBFormInputStandards } from 'jb-form';
 import type { ElementsObject, ValidationValue } from './types.js';
-import {registerDefaultVariables} from 'jb-core/theme';
+import { registerDefaultVariables } from 'jb-core/theme';
 import { renderHTML } from './render';
 import { dictionary } from './i18n';
 import { i18n } from 'jb-core/i18n';
@@ -47,8 +47,8 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
   get isLoading() {
     return this.#isLoading;
   }
-  get form(){
-    return this.#internals?.form??null;
+  get form() {
+    return this.#internals?.form ?? null;
   }
   set isLoading(value: boolean) {
     this.#isLoading = Boolean(value);
@@ -61,18 +61,25 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
     }
   }
   #validation = new ValidationHelper({
-    clearValidationError:this.clearValidationError.bind(this),
-    getValue:() => (this.value),
-    getValidations:this.#getInsideValidationsCallback.bind(this),
-    getValueString: () =>(this.value ? 'true' : 'false'),
-    setValidationResult:this.#setValidationResult.bind(this),
-    showValidationError:this.showValidationError.bind(this)
+    clearValidationError: this.clearValidationError.bind(this),
+    getValue: () => (this.value),
+    getValidations: this.#getInsideValidationsCallback.bind(this),
+    getValueString: () => (this.value ? 'true' : 'false'),
+    setValidationResult: this.#setValidationResult.bind(this),
+    showValidationError: this.showValidationError.bind(this)
   })
-  get validation(){
+  get validation() {
     return this.#validation;
   }
-  get name(){
+  get name() {
     return this.getAttribute('name') || '';
+  }
+  set name(value: string) {
+    if (value) {
+      this.setAttribute('name', value);
+    } else {
+      this.removeAttribute('name');
+    }
   }
   #initialValue = false;
   /**
@@ -96,23 +103,23 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
   formDisabledCallback(disabled: boolean) {
     this.disabled = disabled;
   }
-  get isDirty(): boolean{
+  get isDirty(): boolean {
     return this.#value !== this.initialValue;
   }
   #required = false;
-  set required(value:boolean){
+  set required(value: boolean) {
     this.#required = Boolean(value);
     this.elements.componentWrapper.setAttribute("aria-required", this.#required ? "true" : "false");
-    this.#validation.checkValiditySync({showError:false});
+    this.#validation.checkValiditySync({ showError: false });
   }
   get required() {
     return this.#required;
   }
-  isAutoValidationDisabled= false;
-  get disabled(){
+  isAutoValidationDisabled = false;
+  get disabled() {
     return this.#disabled;
   }
-  set disabled(value:boolean){
+  set disabled(value: boolean) {
     this.#disabled = Boolean(value);
     this.#setState("disabled", this.#disabled);
     this.elements.componentWrapper.disabled = this.#disabled;
@@ -144,8 +151,8 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
     const shadowRoot = this.attachShadow({
       mode: 'open',
       delegatesFocus: true,
-      clonable:true,
-      serializable:true
+      clonable: true,
+      serializable: true
     });
     registerDefaultVariables();
     const html = `<style>${CSS} ${VariablesCSS}</style>\n${renderHTML()}`;
@@ -225,7 +232,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
       this.#isDirty = true;
       this.#setValue(!this.#value);
       const DispatchedEvent = this.#dispatchOnChangeEvent();
-      if(DispatchedEvent.defaultPrevented){
+      if (DispatchedEvent.defaultPrevented) {
         this.#setValue(!this.#value);
         this.#isDirty = wasDirty;
       }
@@ -238,7 +245,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
     return prevented;
   }
   #dispatchOnChangeEvent() {
-    const event = new Event('change',{bubbles:true,cancelable:true,composed:true});
+    const event = new Event('change', { bubbles: true, cancelable: true, composed: true });
     this.dispatchEvent(event);
     return event;
   }
@@ -283,18 +290,18 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
       result.validationList.forEach((res) => {
         if (!res.isValid) {
           if (res.validation.stateType) { states[res.validation.stateType] = true; }
-          if (message === '') { message = res.message??""; }
+          if (message === '') { message = res.message ?? ""; }
         }
       });
       this.#internals?.setValidity(states, message);
     }
   }
-  #getInsideValidationsCallback():ValidationItem<ValidationValue>[]{
-    if(this.#required){
+  #getInsideValidationsCallback(): ValidationItem<ValidationValue>[] {
+    if (this.#required) {
       return [{
-        validator:(value)=>value!==false,
-        message:dictionary.get(i18n,'requireMessage'),
-        stateType:"valueMissing"
+        validator: (value) => value !== false,
+        message: dictionary.get(i18n, 'requireMessage'),
+        stateType: "valueMissing"
       }];
     }
     return [];
@@ -307,15 +314,15 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
     this.#internals?.states?.delete("invalid");
     this.elements.componentWrapper.setAttribute("aria-invalid", "false");
   }
-  get validationMessage(){
-    return this.#internals?.validationMessage??"";
+  get validationMessage() {
+    return this.#internals?.validationMessage ?? "";
   }
 
-  checkValidity(){
-    return this.#validation.checkValiditySync({showError:false}).isAllValid;
+  checkValidity() {
+    return this.#validation.checkValiditySync({ showError: false }).isAllValid;
   }
-  reportValidity(){
-    return this.#validation.checkValiditySync({showError:true}).isAllValid;
+  reportValidity() {
+    return this.#validation.checkValiditySync({ showError: true }).isAllValid;
   }
 }
 const myElementNotExists = !customElements.get('jb-switch');

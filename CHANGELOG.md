@@ -1,6 +1,6 @@
 # changelog
 
-## Unreleased
+## [1.7.2] - 2026-07-30
 
 ### Added
 
@@ -12,6 +12,10 @@
 - Added `initialValue` as the default and reset state; it seeds `value` only until the live value is explicitly set.
 - Updated the React wrapper so an omitted `value` does not overwrite `initialValue`, while explicit `null` still clears the live state.
 - add `stateType:"valueMissing"` to error of required check.
+
+### Fixed
+
+- fix name assignment property
 
 ## [1.7.0] - 2026-07-19
 
