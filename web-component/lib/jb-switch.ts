@@ -7,6 +7,7 @@ import { registerDefaultVariables } from 'jb-core/theme';
 import { renderHTML } from './render';
 import { dictionary } from './i18n';
 import { i18n } from 'jb-core/i18n';
+import { parseBooleanAttribute } from 'jb-core';
 
 export * from './types.js';
 export class JBSwitchWebComponent extends HTMLElement implements WithValidation, JBFormInputStandards<boolean> {
@@ -175,11 +176,11 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
   }
   initProp() {
     if (this.hasAttribute('value')) {
-      this.value = this.getAttribute('value') === "true";
+      this.value = parseBooleanAttribute(this.getAttribute('value'));
     }
-    this.required = this.getAttribute('required') === "" || this.getAttribute('required') === "true";
-    this.disabled = this.getAttribute('disabled') === "" || this.getAttribute('disabled') === "true";
-    this.isLoading = this.getAttribute('loading') === "" || this.getAttribute('loading') === "true";
+    this.required = parseBooleanAttribute(this.getAttribute('required'));
+    this.disabled = parseBooleanAttribute(this.getAttribute('disabled'));
+    this.isLoading = parseBooleanAttribute(this.getAttribute('loading'));
   }
   static get observedAttributes(): string[] {
     return ['true-title', "false-title", 'value', 'name', 'disabled', 'loading', 'required', 'label'];
@@ -191,7 +192,7 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
   onAttributeChange(name: string, value: string | null): void {
     switch (name) {
       case 'value':
-        this.value = value === "true";
+        this.value = parseBooleanAttribute(value);
         break;
       case 'true-title':
         this.#setCaptionText(this.elements.trueText, value);
@@ -200,13 +201,13 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
         this.#setCaptionText(this.elements.falseText, value);
         break;
       case 'disabled':
-        this.disabled = value === "" || value === "true";
+        this.disabled = parseBooleanAttribute(value);
         break;
       case 'loading':
-        this.isLoading = value === "" || value === "true";
+        this.isLoading = parseBooleanAttribute(value);
         break;
       case 'required':
-        this.required = value === "" || value === "true";
+        this.required = parseBooleanAttribute(value);
         break;
       case 'label':
         this.elements.componentWrapper.setAttribute("aria-label", value ?? "");
