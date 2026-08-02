@@ -9,9 +9,7 @@ React wrapper for [`jb-switch`](https://github.com/javadbat/jb-switch). It impor
 
 ## Demo
 
-- [CodeSandbox preview](https://3f63dj.csb.app/samples/jb-switch)
-- [CodeSandbox editor](https://codesandbox.io/p/sandbox/jb-design-system-3f63dj?file=%2Fsrc%2Fsamples%2FJBSwitch.tsx)
-- [Storybook](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch)
+Explore the [basic switch demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--normal), [loading behavior](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--loading-action-test), [cancellable changes](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--event-test), and [RTL captions](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--rtl). For standalone code, use the [CodeSandbox preview](https://3f63dj.csb.app/samples/jb-switch) or [CodeSandbox editor](https://codesandbox.io/p/sandbox/jb-design-system-3f63dj?file=%2Fsrc%2Fsamples%2FJBSwitch.tsx).
 
 ## Installation
 
@@ -27,7 +25,7 @@ import { JBSwitch } from 'jb-switch/react';
 
 ## When to use
 
-Use `JBSwitch` for a boolean setting that can be toggled on or off and should show both active and inactive labels.
+Use `JBSwitch` for a boolean setting that can be toggled on or off and should show both active and inactive labels. See the [basic switch demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--normal).
 
 Use `JBCheckbox` when the UI represents agreement, selection, or a single boolean option in a form rather than an immediate setting.
 
@@ -35,25 +33,27 @@ Use `JBCheckbox` when the UI represents agreement, selection, or a single boolea
 
 | prop | type | description |
 | --- | --- | --- |
-| `value` | `boolean` | Current boolean value. |
+| `value` | `boolean` | Current boolean value; see the [controlled value demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--normal). |
 | `name` | `string` | Form field name. |
-| `trueTitle` | `string` | Caption shown on the true side. |
-| `falseTitle` | `string` | Caption shown on the false side. |
-| `isLoading` | `boolean` | Shows loading animation. |
+| `trueTitle` | `string` | Caption shown on the true side; see [RTL captions](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--rtl). |
+| `falseTitle` | `string` | Caption shown on the false side; see [RTL captions](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--rtl). |
+| `isLoading` | `boolean` | Shows loading animation; see the [loading demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--loading-action-test). |
 | `disabled` | `boolean` | Disables user interaction. |
-| `required` | `boolean` | Requires the value to be true for validation. |
-| `validationList` | `ValidationItem<boolean>[]` | Custom validation rules from `jb-validation`. |
+| `required` | `boolean` | Requires the value to be true for validation; see [validation](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--event-test). |
+| `validationList` | `ValidationItem<boolean>[]` | Custom validation rules from `jb-validation`; see [validation](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--event-test). |
 
 ## Events
 
 | prop | event | description |
 | --- | --- | --- |
-| `onLoad` | `load` | Called before initialization. |
-| `onInit` | `init` | Called after initialization. |
-| `onBeforeChange` | `before-change` | Cancellable event called before committing a user-triggered value change. |
-| `onChange` | `change` | Cancellable event called after value changes. Prevent default to revert the value. |
+| `onLoad` | `load` | Called before initialization; see the [event demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--event-test). |
+| `onInit` | `init` | Called after initialization; see the [event demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--event-test). |
+| `onBeforeChange` | `before-change` | Cancellable event called before committing a user-triggered value change; see [cancellable changes](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--event-test). |
+| `onChange` | `change` | Cancellable event called after value changes. Prevent default to revert the value; see [cancellable changes](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--event-test). |
 
 ## Controlled value
+
+Use a boolean `value` with `onChange` to keep the switch synchronized with React state; see the [normal interaction](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--normal).
 
 ```jsx
 const [enabled, setEnabled] = useState(false);
@@ -68,9 +68,13 @@ const [enabled, setEnabled] = useState(false);
 
 ## Value
 
+Read `event.target.value` in `onBeforeChange` for the intended next value and in `onChange` for the committed value. See the [initial/reset flow](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--initial-value) and [controlled precedence](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--initial-value-does-not-override-value).
+
 `value` is a boolean. Read `event.target.value` in `onBeforeChange` for the next value and in `onChange` for the committed value.
 
 ## Loading state
+
+Set `isLoading` while an async save is running; see the [loading action demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--loading-action-test).
 
 ```jsx
 <JBSwitch
@@ -82,6 +86,8 @@ const [enabled, setEnabled] = useState(false);
 ```
 
 ## Cancellable change
+
+Use `onBeforeChange` to reject a toggle before it commits, or prevent default on `onChange` to revert it. The [event demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--event-test) covers both paths.
 
 ```jsx
 <JBSwitch
@@ -97,6 +103,8 @@ const [enabled, setEnabled] = useState(false);
 
 ## Validation
 
+Use `required` and `validationList` when the switch must be true; see the [validation demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--event-test).
+
 ```jsx
 <JBSwitch
   required
@@ -111,7 +119,7 @@ const [enabled, setEnabled] = useState(false);
 
 ## Styling
 
-The React component uses the same CSS variables and parts as the web component.
+The React component uses the same CSS variables and parts as the web component. See the shared [web-component styling guidance](../README.md#css-parts-and-variables) and the [style gallery](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch-style--gallery).
 
 ```css
 .feature-switch {
@@ -126,11 +134,15 @@ The React component uses the same CSS variables and parts as the web component.
 
 ## CSS parts and variables
 
-Use the same CSS parts and variables as the web component. The `Styling` section above shows the React class-based pattern.
+Use the same CSS parts and variables as the web component. The `Styling` section above shows the React class-based pattern; see the [style gallery](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch-style--gallery).
 
 ## Accessibility notes
 
-Use clear `trueTitle` and `falseTitle` text so the current state is understandable. Set `disabled` while a save operation is in progress if the setting should not be toggled repeatedly.
+Use clear `trueTitle` and `falseTitle` text so the current state is understandable. Set `disabled` while a save operation is in progress if the setting should not be toggled repeatedly. See the [basic switch](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--normal) and [RTL caption](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--rtl) demos.
+
+## Captions and RTL
+
+Use `trueTitle` and `falseTitle` to explain both states. The [RTL demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--rtl) shows the captions in a right-to-left layout.
 
 ## Shared Documentation
 

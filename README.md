@@ -16,13 +16,13 @@
 
 ## When to use
 
-Use `jb-switch` for a boolean setting that can be turned on or off.
+Use `jb-switch` for a boolean setting that can be turned on or off. See the [basic switch demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--normal) for the default interaction.
 
 Use `jb-checkbox` when the UI should look like a checkbox or when the boolean is part of a list of choices.
 
 ## Demo
 
-- [Storybook](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch)
+- Explore the [switch examples](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--normal), including [loading behavior](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--loading-action-test), [cancellable changes](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--event-test), and [RTL captions](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--rtl).
 
 ## Using With JS Frameworks
 
@@ -50,26 +50,26 @@ import 'jb-switch';
 
 | name | type | default | description |
 | --- | --- | --- | --- |
-| `value` | `boolean` | `false` | Switch value. Only `"true"` means true. |
+| `value` | `boolean` | `false` | Switch value. Only `"true"` means true; see the [value demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--normal). |
 | `name` | `string` | `""` | Form field name. |
-| `true-title` | `string` | `""` | Caption shown on the true side. |
-| `false-title` | `string` | `""` | Caption shown on the false side. |
+| `true-title` | `string` | `""` | Caption shown on the true side; see [RTL captions](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--rtl). |
+| `false-title` | `string` | `""` | Caption shown on the false side; see [RTL captions](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--rtl). |
 | `disabled` | `boolean` | `false` | Disables user interaction. Empty attribute and `"true"` mean true. |
-| `loading` | `boolean` | `false` | Shows loading animation. Empty attribute and `"true"` mean true. |
-| `required` | `boolean` | `false` | Requires the value to be true for validation. Empty attribute and `"true"` mean true. |
+| `loading` | `boolean` | `false` | Shows loading animation. Empty attribute and `"true"` mean true; see the [loading demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--loading-action-test). |
+| `required` | `boolean` | `false` | Requires the value to be true for validation. Empty attribute and `"true"` mean true; see [validation](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--event-test). |
 
 ### Properties
 
 | name | type | readonly | description |
 | --- | --- | --- | --- |
-| `value` | `boolean` | no | Current boolean value. |
-| `isLoading` | `boolean` | no | Shows or hides loading animation. |
+| `value` | `boolean` | no | Current boolean value; see [initial and controlled values](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--initial-value). |
+| `isLoading` | `boolean` | no | Shows or hides loading animation; see the [loading action demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--loading-action-test). |
 | `disabled` | `boolean` | no | Enables or disables user interaction. |
-| `required` | `boolean` | no | Requires the value to be true for validation. |
+| `required` | `boolean` | no | Requires the value to be true for validation; see [validation](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--event-test). |
 | `validation` | `ValidationHelper<boolean>` | yes | Validation helper from `jb-validation`; set `validation.list` for custom rules. |
 | `form` | `HTMLFormElement \| null` | yes | Associated form from `ElementInternals`. |
 | `name` | `string` | yes | Form field name from the `name` attribute. |
-| `initialValue` | `boolean` | no | Default and reset value. It initializes `value` until the live value is explicitly set. |
+| `initialValue` | `boolean` | no | Default and reset value. It initializes `value` until the live value is explicitly set; see [initial value](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--initial-value). |
 | `isDirty` | `boolean` | yes | `true` when current value differs from `initialValue`. |
 | `validationMessage` | `string` | yes | Current validation message from `ElementInternals`. |
 
@@ -77,8 +77,8 @@ import 'jb-switch';
 
 | name | returns | description |
 | --- | --- | --- |
-| `checkValidity()` | `boolean` | Runs validation without showing an error message. |
-| `reportValidity()` | `boolean` | Runs validation and requests visible error handling. |
+| `checkValidity()` | `boolean` | Runs validation without showing an error message; see the [event/validation demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--event-test). |
+| `reportValidity()` | `boolean` | Runs validation and requests visible error handling; see [required validation](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--event-test). |
 | `focus()` | `void` | Public focus method placeholder. Keyboard focus management is not currently implemented. |
 | `clearValidationError()` | `void` | Placeholder for clearing visible validation error UI. |
 
@@ -86,12 +86,14 @@ import 'jb-switch';
 
 | event | cancelable | description |
 | --- | --- | --- |
-| `load` | no | Dispatched from `connectedCallback` before initialization. |
-| `init` | no | Dispatched from `connectedCallback` after initialization. |
-| `before-change` | yes | Dispatched before committing a user-triggered value change. Call `preventDefault()` to cancel. |
-| `change` | yes | Dispatched after value changes. Call `preventDefault()` to revert the committed change. |
+| `load` | no | Dispatched from `connectedCallback` before initialization; see the [event demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--event-test). |
+| `init` | no | Dispatched from `connectedCallback` after initialization; see the [event demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--event-test). |
+| `before-change` | yes | Dispatched before committing a user-triggered value change. Call `preventDefault()` to cancel; see [cancellable changes](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--event-test). |
+| `change` | yes | Dispatched after value changes. Call `preventDefault()` to revert the committed change; see [cancellable changes](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--event-test). |
 
 ## Value
+
+Use the boolean `value` property for runtime updates; see the [normal value demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--normal), [initial value/reset flow](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--initial-value), and [controlled value precedence](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--initial-value-does-not-override-value).
 
 ```js
 const switchEl = document.querySelector('jb-switch');
@@ -109,7 +111,9 @@ Only `value="true"` sets the value to true. `value="false"`, an empty value, or 
 
 ## Cancellable change
 
-Use `before-change` to cancel before the value commits. During this event, `event.target.value` returns the intended next value.
+Use `before-change` to reject a toggle before it commits, or cancel `change` to revert it. The [event demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--event-test) covers both paths.
+
+During `before-change`, `event.target.value` returns the intended next value.
 
 ```js
 const switchEl = document.querySelector('jb-switch');
@@ -125,6 +129,8 @@ switchEl.addEventListener('before-change', (event) => {
 
 ## Loading state
 
+Set `loading` in HTML or `isLoading` in JavaScript while an async save is running; see the [loading action demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--loading-action-test).
+
 ```html
 <jb-switch loading></jb-switch>
 ```
@@ -136,9 +142,13 @@ switchEl.isLoading = true;
 switchEl.isLoading = false;
 ```
 
+## Captions and RTL
+
+Use `true-title` and `false-title` to explain both states. The [RTL demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--rtl) shows captions in a right-to-left layout.
+
 ## Validation
 
-Use `required` when the switch must be true.
+Use `required` when the switch must be true and `validation.list` for custom rules; see the [validation and events demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--event-test).
 
 ```html
 <jb-switch required></jb-switch>
@@ -159,7 +169,7 @@ switchEl.validation.list = [
 
 ## CSS parts and variables
 
-For complete styling guidance, live examples, official parts, custom states, and copyable style recipes, see [Styling](https://javadbat.github.io/design-system/?path=/docs/components-form-elements-jbswitch-styling).
+For complete styling guidance, live examples, official parts, custom states, and copyable style recipes, see [Styling](https://javadbat.github.io/design-system/?path=/docs/components-form-elements-jbswitch-styling) and the [style gallery](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch-style--gallery).
 
 ```css
 jb-switch {
@@ -170,7 +180,7 @@ jb-switch {
 
 ## Accessibility notes
 
-- The component attaches `ElementInternals` and sets role to `switch` where supported.
+- The component attaches `ElementInternals` and sets role to `switch` where supported. See the [basic switch demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbswitch--normal) for the rendered control.
 - Keyboard control and focus behavior are not currently implemented.
 - Use clear captions or surrounding label text so users know what setting the switch controls.
 
