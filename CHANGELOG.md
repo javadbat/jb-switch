@@ -1,5 +1,11 @@
 # changelog
 
+## [1.7.3] - 2026-08-4
+
+### Changed
+
+- remove extra build files.
+
 ## [1.7.2] - 2026-07-30
 
 ### Added
