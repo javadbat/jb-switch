@@ -1,5 +1,11 @@
 # changelog
 
+## Unreleased
+
+### Changed
+
+- Updated component color defaults to use the shared semantic content and surface tokens.
+
 ## [1.7.3] - 2026-08-4
 
 ### Changed

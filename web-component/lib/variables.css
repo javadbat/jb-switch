@@ -12,7 +12,7 @@
   /* theme/color */
   --ring-color-active: var(--jb-switch-ring-color-active, var(--jb-green));
   --bg-color-active: var(--jb-switch-bg-color-active, var(--jb-green));
-  --bg-color: var(--jb-switch-bg-color, var(--jb-neutral-10));
+  --bg-color: var(--jb-switch-bg-color, var(--jb-surface-secondary));
   --ring-color: var(--jb-switch-ring-color, var(--jb-primary));
   --bar-border-color: var(--jb-switch-bar-border-color, transparent);
   --trigger-bg-color: var(--jb-switch-trigger-bg-color, url(#color1));
