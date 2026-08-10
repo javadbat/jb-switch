@@ -1,14 +1,14 @@
 jb-switch.fluent-style {
     --jb-switch-width: 2.5rem;
     --jb-switch-height: 1.25rem;
-    --jb-switch-bg-color: var(--jb-background);
+    --jb-switch-bg-color: var(--jb-surface-secondary);
     --jb-switch-bg-color-active: var(--jb-focus-color);
     --jb-switch-ring-color: #605e5c;
-    --jb-switch-ring-color-active: var(--jb-text-inverse);
-    --jb-switch-trigger-bg-color: var(--jb-text-inverse);
-    --jb-switch-trigger-bg-color-active: var(--jb-text-inverse);
-    --jb-switch-caption-color: var(--jb-text-secondary);
-    --jb-switch-caption-color-active: var(--jb-text-primary);
+    --jb-switch-ring-color-active: var(--jb-content-inverse);
+    --jb-switch-trigger-bg-color: var(--jb-content-inverse);
+    --jb-switch-trigger-bg-color-active: var(--jb-content-inverse);
+    --jb-switch-caption-color: var(--jb-content-secondary);
+    --jb-switch-caption-color-active: var(--jb-content-primary);
     --jb-switch-bar-border-color: #8a8886;
     --jb-switch-bar-stroke-width: 8px;
     --jb-switch-focus-ring-color: var(--jb-focus-color);

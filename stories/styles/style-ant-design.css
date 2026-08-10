@@ -3,10 +3,10 @@ jb-switch.ant-design-style {
     --jb-switch-height: 1.375rem;
     --jb-switch-bg-color: rgb(0 0 0 / 0.25);
     --jb-switch-bg-color-active: var(--jb-focus-color);
-    --jb-switch-ring-color: var(--jb-surface);
-    --jb-switch-ring-color-active: var(--jb-surface);
-    --jb-switch-trigger-bg-color: var(--jb-surface);
-    --jb-switch-trigger-bg-color-active: var(--jb-surface);
+    --jb-switch-ring-color: var(--jb-surface-primary);
+    --jb-switch-ring-color-active: var(--jb-surface-primary);
+    --jb-switch-trigger-bg-color: var(--jb-surface-primary);
+    --jb-switch-trigger-bg-color-active: var(--jb-surface-primary);
     --jb-switch-caption-color: rgb(0 0 0 / 0.65);
     --jb-switch-caption-color-active: rgb(0 0 0 / 0.88);
     --jb-switch-caption-font-size: 0.875rem;

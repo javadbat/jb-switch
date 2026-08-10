@@ -2,9 +2,9 @@ jb-switch.porcelain-style {
     --jb-switch-bg-color: #eaf2fb;
     --jb-switch-bg-color-active: #2f65a7;
     --jb-switch-ring-color: #2f65a7;
-    --jb-switch-ring-color-active: var(--jb-surface);
-    --jb-switch-trigger-bg-color: var(--jb-surface);
-    --jb-switch-trigger-bg-color-active: var(--jb-surface);
+    --jb-switch-ring-color-active: var(--jb-surface-primary);
+    --jb-switch-trigger-bg-color: var(--jb-surface-primary);
+    --jb-switch-trigger-bg-color-active: var(--jb-surface-primary);
     --jb-switch-caption-color: #47617d;
     --jb-switch-caption-color-active: #1f3d63;
     --jb-switch-bar-border-color: #c9ddf2;

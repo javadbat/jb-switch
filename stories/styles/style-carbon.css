@@ -4,11 +4,11 @@ jb-switch.carbon-style {
     --jb-switch-bg-color: #333333;
     --jb-switch-bg-color-active: var(--jb-primary);
     --jb-switch-ring-color: #c8c8c8;
-    --jb-switch-ring-color-active: var(--jb-text-inverse);
+    --jb-switch-ring-color-active: var(--jb-content-inverse);
     --jb-switch-trigger-bg-color: #111111;
-    --jb-switch-trigger-bg-color-active: var(--jb-text-inverse);
+    --jb-switch-trigger-bg-color-active: var(--jb-content-inverse);
     --jb-switch-caption-color: #d8d8d8;
-    --jb-switch-caption-color-active: var(--jb-text-inverse);
+    --jb-switch-caption-color-active: var(--jb-content-inverse);
     --jb-switch-focus-ring-color: var(--jb-focus-color);
 }
 

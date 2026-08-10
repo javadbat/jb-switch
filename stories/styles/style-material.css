@@ -5,8 +5,8 @@ jb-switch.material-style {
     --jb-switch-ring-color-active: transparent;
     --jb-switch-trigger-bg-color: var(--jb-outline);
     --jb-switch-trigger-bg-color-active: var(--jb-on-primary);
-    --jb-switch-caption-color: var(--jb-text-secondary);
-    --jb-switch-caption-color-active: var(--jb-text-primary);
+    --jb-switch-caption-color: var(--jb-content-secondary);
+    --jb-switch-caption-color-active: var(--jb-content-primary);
     --jb-switch-focus-ring-color: var(--jb-primary);
     --jb-switch-trigger-ring-stroke-width: 0;
 }
