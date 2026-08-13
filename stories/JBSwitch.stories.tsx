@@ -215,13 +215,20 @@ export const LoadingActionTest = {
   }
 };
 
-export const WebComponent:StoryObj<any> = {
-  render:(args:any) => <jb-switch true-title={args.trueTitle} false-title={args.falseTitle}></jb-switch>,
+type WebComponentArgs = {
+  value: boolean;
+  trueTitle: string;
+  falseTitle: string;
+  onChange: (e: Event) => void;
+};
+
+export const WebComponent: StoryObj<WebComponentArgs> = {
+  render: args => <jb-switch true-title={args.trueTitle} false-title={args.falseTitle}></jb-switch>,
   args:{
     value:false,
     trueTitle:'active',
     falseTitle:'deactivate',
-    onChange:(e:any)=>{console.log(e);}
+    onChange: e => { console.log(e); }
   },
   play: async ({ canvasElement, args }) => {
     const switchElement = getSwitch(canvasElement);
