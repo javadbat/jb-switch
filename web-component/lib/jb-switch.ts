@@ -327,3 +327,9 @@ export class JBSwitchWebComponent extends JBBaseComponent implements WithValidat
   }
 }
 defineWebComponent('jb-switch', JBSwitchWebComponent);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "jb-switch": JBSwitchWebComponent;
+  }
+}
