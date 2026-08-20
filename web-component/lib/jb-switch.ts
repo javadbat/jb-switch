@@ -1,3 +1,4 @@
+import { defineWebComponent, JBBaseComponent, parseBooleanAttribute } from "jb-core";
 import CSS from './jb-switch.css';
 import VariablesCSS from './variables.css';
 import { ValidationHelper, type ValidationItem, type ValidationResult, type WithValidation, type ShowValidationErrorParameters } from 'jb-validation';
@@ -7,10 +8,9 @@ import { registerDefaultVariables } from 'jb-core/theme';
 import { renderHTML } from './render';
 import { dictionary } from './i18n';
 import { i18n } from 'jb-core/i18n';
-import { parseBooleanAttribute } from 'jb-core';
 
 export * from './types.js';
-export class JBSwitchWebComponent extends HTMLElement implements WithValidation, JBFormInputStandards<boolean> {
+export class JBSwitchWebComponent extends JBBaseComponent implements WithValidation, JBFormInputStandards<boolean> {
   static get formAssociated() { return true; }
   #value = false;
   #isDirty = false;
@@ -326,7 +326,4 @@ export class JBSwitchWebComponent extends HTMLElement implements WithValidation,
     return this.#validation.checkValiditySync({ showError: true }).isAllValid;
   }
 }
-const myElementNotExists = !customElements.get('jb-switch');
-if (myElementNotExists) {
-  window.customElements.define('jb-switch', JBSwitchWebComponent);
-}
+defineWebComponent('jb-switch', JBSwitchWebComponent);
